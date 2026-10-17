@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iqbal App Panj Surah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #1b4332;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        .card {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #2d6a4f;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #1b4332;
+        }
+        .card p {
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #2d6a4f;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background-color: #1b4332;
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h2>📖 Iqbal App Panj Surah</h2>
+        <p>कुरान शरीफ की 5 अहम और फजीलत वाली सूरतें</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h3>1. सूरह यासीन (Surah Yaseen)</h3>
+            <p>इसे कुरान का दिल कहा जाता है। सुबह पढ़ने से दिनभर की मुश्किलें आसान होती हैं।</p>
+            <a href="https://quran.com/36" target="_blank" class="btn">सूरा पढ़ें / सुनें</a>
+        </div>
+
+        <div class="card">
+            <h3>2. सूरह अर-रहमान (Surah Ar-Rahman)</h3>
+            <p>इसे 'कुरान की दुल्हन' कहा जाता है, जिसमें अल्लाह की बेशुमार नेमतों का जिक्र है।</p>
+            <a href="https://quran.com/55" target="_blank" class="btn">सूरा पढ़ें / सुनें</a>
+        </div>
+
+        <div class="card">
+            <h3>3. सूरह अल-वाक़िआह (Surah Al-Waqi'ah)</h3>
+            <p>इसे रात को पढ़ने से रिज़्क (रोजी-रोटी) में बरकत होती है और तंगी दूर होती है।</p>
+            <a href="https://quran.com/56" target="_blank" class="btn">सूरा पढ़ें / सुनें</a>
+        </div>
+
+        <div class="card">
+            <h3>4. सूरह अल-मुल्क (Surah Al-Mulk)</h3>
+            <p>इसे सोने से पहले पढ़ने की खास फजीलत है, जो कब्र के अज़ाब से बचाती है।</p>
+            <a href="https://quran.com/67" target="_blank" class="btn">सूरा पढ़ें / सुनें</a>
+        </div>
+
+        <div class="card">
+            <h3>5. सूरह अल-मुज़म्मिल (Surah Al-Muzammil)</h3>
+            <p>यह रात की इबादत और दिल के सुकून के लिए बहुत बरकत वाली सूरत है।</p>
+            <a href="https://quran.com/73" target="_blank" class="btn">सूरा पढ़ें / सुनें</a>
+        </div>
+
+    </div>
+
+    <!-- Firebase SDK Setup -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyBz4mTwL2AeEIwRXa4gIjPm3euzSNN7-YI",
+          authDomain: "iqbal-app-panj-surah-b039c.firebaseapp.com",
+          projectId: "iqbal-app-panj-surah-b039c",
+          storageBucket: "iqbal-app-panj-surah-b039c.firebasestorage.app",
+          messagingSenderId: "172530800219",
+          appId: "1:172530800219:web:173cf1467e06967ca0117e",
+          measurementId: "G-550QCCVZT8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</body>
+</html>
