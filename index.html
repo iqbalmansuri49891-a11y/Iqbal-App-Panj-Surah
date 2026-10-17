@@ -77,7 +77,6 @@
             color: var(--text-color);
             font-family: 'Amiri', serif, Arial;
             line-height: 2.1;
-            word-spacing: 2px;
         }
         .translation {
             font-size: 14px;
@@ -88,7 +87,6 @@
         body.dark-mode .translation {
             color: #ccc;
         }
-        /* Navigation Bar */
         .nav-bar {
             position: fixed;
             bottom: 0;
@@ -120,7 +118,6 @@
             fill: currentColor;
             margin-bottom: 2px;
         }
-        /* Tasbeeh Counter */
         .tasbeeh-box {
             text-align: center;
             padding: 20px;
@@ -180,7 +177,7 @@
 <body>
 
     <header>
-        <h1 id="app-title">📖 Iqbal App - Panj Surah</h1>
+        <h1 id="app-title">📖 Iqbal App - Panj Surah & Duas</h1>
     </header>
 
     <div class="container">
@@ -191,95 +188,98 @@
             
             <div class="card">
                 <h3>आयतुल कुर्सी (Ayat-ul-Kursi)</h3>
-                <div class="arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُشُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                <div class="arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَلْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُشُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
                 <div class="translation"><b>तर्जुमा:</b> अल्लाह वो माबूद है जिसके सिवा कोई इबादत के लायक नहीं, जो हमेशा जिंदा रहने वाला और सबको थामने वाला है। न उसे ऊंघ आती है और न नींद। उसी का है जो कुछ आसमानों में है और जो कुछ ज़मीन में है... और वही बहुत बुलंद और बहुत عظمت वाला है।</div>
                 <audio controls><source src="https://server8.mp3quran.net/afs/002255.mp3" type="audio/mpeg"></audio>
             </div>
 
             <div class="card">
                 <h3>1. सूरह यासीन (Surah Yaseen)</h3>
-                <p>कुरान शरीफ का दिल</p>
+                <p class="translation">कुरान शरीफ का दिल</p>
                 <audio controls><source src="https://server8.mp3quran.net/afs/036.mp3" type="audio/mpeg"></audio>
                 <br><a href="https://quran.com/36" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
             </div>
 
             <div class="card">
                 <h3>2. सूरह अर-रहमान (Surah Ar-Rahman)</h3>
-                <p>अल्लाह की बेशुमार नेमतें</p>
+                <p class="translation">अल्लाह की बेशुमार नेमतें</p>
                 <audio controls><source src="https://server8.mp3quran.net/afs/055.mp3" type="audio/mpeg"></audio>
                 <br><a href="https://quran.com/55" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
             </div>
 
             <div class="card">
                 <h3>3. सूरह अल-वाक़िआह (Surah Al-Waqi'ah)</h3>
-                <p>रिज़्क में बरकत के लिए</p>
+                <p class="translation">रिज़्क में बरकत के लिए</p>
                 <audio controls><source src="https://server8.mp3quran.net/afs/056.mp3" type="audio/mpeg"></audio>
                 <br><a href="https://quran.com/56" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
             </div>
 
             <div class="card">
                 <h3>4. सूरह अल-मुल्क (Surah Al-Mulk)</h3>
-                <p>कब्र के अज़ाब से हिफाजत</p>
+                <p class="translation">कब्र के अज़ाब से हिफाजत</p>
                 <audio controls><source src="https://server8.mp3quran.net/afs/067.mp3" type="audio/mpeg"></audio>
                 <br><a href="https://quran.com/67" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
             </div>
 
             <div class="card">
                 <h3>5. सूरह अल-मुज़म्मिल (Surah Al-Muzammil)</h3>
-                <p>दिल का सुकून और रात की इबादत</p>
+                <p class="translation">दिल का सुकून और रात की इबादत</p>
                 <audio controls><source src="https://server8.mp3quran.net/afs/073.mp3" type="audio/mpeg"></audio>
                 <br><a href="https://quran.com/73" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
             </div>
         </div>
 
-        <!-- PAGE 2: DUAS & QULS -->
+        <!-- PAGE 2: DUAS, Azan, Ashura, Nade Ali, Jamila & Quls -->
         <div id="duas-tab" class="tab-content">
-            <h2>🤲 Essential Duas & Quls</h2>
+            <h2>🤲 Essential Duas, Azan & Quls</h2>
+
+            <div class="card">
+                <h3>अज़ान (Azan)</h3>
+                <div class="arabic">اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ • أَشْهدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ • أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ • حَىعلَى الصَّلَاةِ • حَى عَلَى الْفَلَاحِ</div>
+                <div class="translation"><b>तर्जुमा:</b> अल्लाह सबसे बड़ा है, अल्लाह सबसे बड़ा है। मैं गवाही देता हूँ कि अल्लाह के सिवा कोई माबूद नहीं। मैं गवाही देता हूँ कि मुहम्मद ﷺ अल्लाह के रसूल हैं। नमाज के लिए आओ, कामयाबी की तरफ आओ।</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg"></audio>
+            </div>
             
             <div class="card">
-                <h3>1. सूरह अल-काफिरून</h3>
-                <div class="arabic">قُلْ يَا أَيُّهَا الْكَافِرُونَ ۝ لَا أَعْبُدُ مَا تَعْبُدُونَ ۝ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ۝ وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ ۝ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ۝ لَكُمْ دِينُكُمْ وَلِيَ دِينِ</div>
-                <div class="translation"><b>तर्जुमा:</b> कह दीजिए कि ऐ काफ़िरो! मैं उन चीज़ों की इबादत नहीं करता जिनकी तुम इबादत करते हो... तुम्हारे लिए तुम्हारा दीन है और मेरे लिए मेरा दीन है।</div>
-                <audio controls><source src="https://server8.mp3quran.net/afs/109.mp3" type="audio/mpeg"></audio>
+                <h3>दुआ-ए-आशूरा (Dua-e-Ashura)</h3>
+                <div class="arabic">سُبْحَانَ اللَّهِ مِلْءَ الْمِيزَانِ وَمُنْتَهَى الْعِلْمِ وَمَبْلَغَ الرِّضَا وَزِنَةَ الْعَرْشِ...</div>
+                <div class="translation"><b>तर्जुमा:</b> पाक है अल्लाह तराजू के वजन के बराबर, इल्म की इंतहा और अर्श के वजन के बराबर...</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg"></audio>
             </div>
 
             <div class="card">
-                <h3>2. सूरह अल-इखलास</h3>
-                <div class="arabic">قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</div>
-                <div class="translation"><b>तर्जुमा:</b> कह दीजिए कि वह अल्लाह एक है। अल्लाह बे-नियाज़ है। न उसने किसी को जना है और न वह किसी से जना गया है।</div>
+                <h3>नद-ए-अली (Dua-e-Nade Ali)</h3>
+                <div class="arabic">نَادِ عَلِيًّا مَظْهَرَ الْعَجَائِبِ تَجِدْهُ عَوْنًا لَكَ فِي النَّوَائِبِ...</div>
+                <div class="translation"><b>तर्जुमा:</b> पुकारो अली को जो अजाइब (कमाल) के जाहिर करने वाले हैं, तुम उनको अपनी मुश्किलों और परेशानियों में मददगार पाओगे...</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg"></audio>
+            </div>
+
+            <div class="card">
+                <h3>दुआ-ए-गंजुल अर्श (Dua-e-Ganjul Arsh)</h3>
+                <div class="arabic">لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْمَلِكِ الْقُدُّوسِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْعَزِيزِ الْحَكِيمِ...</div>
+                <div class="translation"><b>तर्जुमा:</b> अल्लाह के सिवा कोई माबूद नहीं, पाक है बादशाह जो पाकीज़ा है...</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg"></audio>
+            </div>
+
+            <div class="card">
+                <h3>दुआ-ए-जमीला (Dua-e-Jamila)</h3>
+                <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ • اللَّهُمَّ إِنِّي أَسْأَلُكَ بِنُورِ وَجْهِكَ الْكَرِيمِ...</div>
+                <div class="translation"><b>तर्जुमा:</b> ऐ अल्लाह! मैं तुझसे तेरे करीम चेहरे के नूर के वसीले से सवाल करता हूँ...</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg"></audio>
+            </div>
+
+            <div class="card">
+                <h3>चार कुल (Four Qul)</h3>
+                <div class="arabic">قُلْ يَا أَيُّهَا الْكَافِرُونَ ۝ قُلْ هُوَ اللَّهُ أَحَدٌ ۝ قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ قُلْ أَعُوذُ بِرَبِّ النَّاسِ</div>
+                <div class="translation"><b>तर्जुमा:</b> चारों कुल (काफिरून, इखलास, फलक, नास) हिफाजत और ईमान की मजबूती के लिए।</div>
                 <audio controls><source src="https://server8.mp3quran.net/afs/112.mp3" type="audio/mpeg"></audio>
             </div>
 
             <div class="card">
-                <h3>3. सूरह अल-Falaq</h3>
-                <div class="arabic">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</div>
-                <div class="translation"><b>तर्जुमा:</b> कह दीजिए कि मैं सुबह के रब की पनाह मांगता हूँ, हर उस चीज़ के शर से जो उसने पैदा की...</div>
-                <audio controls><source src="https://server8.mp3quran.net/afs/113.mp3" type="audio/mpeg"></audio>
-            </div>
-
-            <div class="card">
-                <h3>4. सूरह अन्-नास</h3>
-                <div class="arabic">قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ</div>
-                <div class="translation"><b>तर्जुमा:</b> कह दीजिए कि मैं लोगों के रब की पनाह मांगता हूँ, जो तमाम लोगों का बादशाह और माबूद है...</div>
-                <audio controls><source src="https://server8.mp3quran.net/afs/114.mp3" type="audio/mpeg"></audio>
-            </div>
-
-            <div class="card">
                 <h3>अहदनामा (Ahd-nama)</h3>
-                <div class="arabic">اللّهُمَّ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ الرَّحْمَٰنِ الرَّحِيمِ، إِنِّي أَعْهَدُ إِلَيْكَ فِي هَذِهِ الْحَيَاةِ الدُّنْيَا بِأَنِّي أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ...</div>
-                <div class="translation"><b>तर्जुमा:</b> ऐ अल्लाह! आसमानों और ज़मीन को पैदा करने वाले, छुपी और खुली हर चीज़ को जानने वाले! मैं तुझसे इस दुनिया की जिंदगी में अहद करता हूँ कि तेरे सिवा कोई माबूद नहीं और मुहम्मद ﷺ तेरे रसूल हैं।</div>
-            </div>
-
-            <div class="card">
-                <h3>दुआ-ए-सफर (Travel Dua)</h3>
-                <div class="arabic">سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ</div>
-                <div class="translation"><b>तर्जुमा:</b> पाक है वह जात जिसने इसे हमारे काबू में कर दिया, और बेशक हमें अपने रब की तरफ लौटकर जाना है।</div>
-            </div>
-
-            <div class="card">
-                <h3>सोने और जागने की दुआ</h3>
-                <p><b>सोते वक्त:</b> بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا (ऐ अल्लाह! तेरे नाम से मरता और जीता हूँ)</p>
-                <p><b>जागने पर:</b> الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ (तमाम तारीफें अल्लाह के लिए हैं जिसने हमें नींद से उठाया)</p>
+                <div class="arabic">اللّهُمَّ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ...</div>
+                <div class="translation"><b>तर्जुमा:</b> ऐ अल्लाह! आसमानों और ज़मीन को पैदा करने वाले... मैं तुझसे अहद करता हूँ कि तेरे सिवा कोई माबूद नहीं।</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg"></audio>
             </div>
         </div>
 
@@ -302,16 +302,25 @@
             <p style="text-align: center; color: #777; margin-top: 40px;">No saved bookmarks yet.</p>
         </div>
 
-        <!-- PAGE 5: TOOLS -->
+        <!-- PAGE 5: TOOLS (99 Names & Total Quran Ayats) -->
         <div id="extras-tab" class="tab-content">
             <h2>✨ Islamic Tools & Info</h2>
+            
+            <div class="card">
+                <h3>📖 Quran Statistics (कुल आयतें)</h3>
+                <p class="translation"><b>कुल सूरतें:</b> 114<br><b>कुल आयतें (Total Ayats):</b> 6,236<br><b>कुल पारा (Juz/Para):</b> 30<br><b>कुल रुकू:</b> 558</p>
+            </div>
+
             <div class="card">
                 <h3>99 Names of Allah (Asma-ul-Husna)</h3>
-                <p class="translation">अल्लाह के 99 प्यारे नाम और उनके मायने जल्द ही यहाँ अपडेट होंगे।</p>
-            </div>
-            <div class="card">
-                <h3>Zakat Calculator</h3>
-                <p class="translation">अपनी संपत्ति और बचत पर ज़कात की सही गणना करने का आसान साधन।</p>
+                <p class="translation">
+                    1. <b>الرَّحْمَنُ (Ar-Rahman):</b> सबसे बड़ा मेहरबान<br>
+                    2. <b>الرَّحِيمُ (Ar-Raheem):</b> निहायत रहम करने वाला<br>
+                    3. <b>الْمَلِكُ (Al-Malik):</b> असली बादशाह<br>
+                    4. <b>الْقُدُّوسُ (Al-Quddus):</b> अत्यंत पवित्र<br>
+                    5. <b>السَّلَامُ (As-Salam):</b> शांति और सलामती देने वाला<br>
+                    <i>(और बाकी सभी 99 नाम मुबारक...)</i>
+                </p>
             </div>
         </div>
 
