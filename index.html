@@ -1,401 +1,451 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Iqbal App - Panj Surah & Duas</title>
-
-<meta name="theme-color" content="#14532d">
-<meta name="description" content="Iqbal App - Panj Surah, Quran, Duas, Darood Sharif and Digital Tasbeeh">
-
-<style>
-:root {
-    --bg: #f5f7ef;
-    --card: #ffffff;
-    --text: #202820;
-    --muted: #647067;
-    --primary: #14532d;
-    --accent: #22804a;
-    --border: #e1e8dd;
-    --soft: #edf7ee;
-    --nav: #ffffff;
-    --shadow: 0 4px 18px rgba(20, 83, 45, .08);
-}
-
-body.dark-mode {
-    --bg: #101712;
-    --card: #1b251e;
-    --text: #edf5ee;
-    --muted: #b2c1b5;
-    --primary: #267546;
-    --accent: #57bd7b;
-    --border: #344439;
-    --soft: #243a2b;
-    --nav: #18221b;
-    --shadow: 0 4px 18px rgba(0,0,0,.2);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    padding-bottom: 85px;
-    font-family: Arial, "Noto Sans Devanagari", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: background .25s, color .25s;
-}
-
-button, select {
-    font: inherit;
-}
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--primary);
-    color: white;
-    padding: 16px 12px;
-    text-align: center;
-    box-shadow: 0 3px 12px rgba(0,0,0,.15);
-}
-
-header h1 {
-    font-size: 20px;
-    margin: 0;
-}
-
-header p {
-    font-size: 12px;
-    margin: 6px 0 0;
-    opacity: .9;
-}
-
-.container {
-    max-width: 700px;
-    margin: 18px auto;
-    padding: 0 13px;
-}
-
-.tab-content {
-    display: none;
-    animation: fadeIn .2s ease;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.page-title {
-    font-size: 21px;
-    margin: 12px 3px 17px;
-    color: var(--primary);
-}
-
-body.dark-mode .page-title {
-    color: var(--accent);
-}
-
-.hero {
-    background: linear-gradient(135deg, #14532d, #2f8550);
-    color: white;
-    border-radius: 17px;
-    padding: 22px 17px;
-    margin-bottom: 18px;
-    box-shadow: var(--shadow);
-}
-
-.hero h2 {
-    margin: 0 0 8px;
-    font-size: 23px;
-}
-
-.hero p {
-    margin: 0;
-    line-height: 1.7;
-    font-size: 14px;
-}
-
-.card {
-    background: var(--card);
-    padding: 17px;
-    margin-bottom: 15px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    overflow-wrap: anywhere;
-}
-
-.card h3 {
-    color: var(--accent);
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 0 0 12px;
-    padding-bottom: 9px;
-    border-bottom: 1px solid var(--border);
-}
-
-.arabic {
-    font-family: "Noto Naskh Arabic", "Amiri", serif;
-    font-size: 27px;
-    line-height: 2.1;
-    text-align: right;
-    direction: rtl;
-    margin: 15px 0;
-    overflow-wrap: anywhere;
-}
-
-.translation {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.9;
-    margin: 10px 0;
-}
-
-audio {
-    width: 100%;
-    height: 40px;
-    margin-top: 10px;
-}
-
-.btn {
-    display: inline-block;
-    border: none;
-    border-radius: 8px;
-    background: var(--accent);
-    color: white;
-    padding: 11px 14px;
-    margin-top: 8px;
-    text-decoration: none;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.btn:active {
-    transform: scale(.98);
-}
-
-.btn-secondary {
-    background: var(--soft);
-    color: var(--text);
-    border: 1px solid var(--border);
-}
-
-.btn-danger {
-    background: #c62828;
-}
-
-.btn-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.nav-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 8px 2px calc(8px + env(safe-area-inset-bottom));
-    background: var(--nav);
-    border-top: 1px solid var(--border);
-    box-shadow: 0 -4px 15px rgba(0,0,0,.06);
-}
-
-.nav-item {
-    flex: 1;
-    min-width: 0;
-    color: var(--muted);
-    text-align: center;
-    text-decoration: none;
-    font-size: 10px;
-    cursor: pointer;
-    padding: 5px 0;
-}
-
-.nav-item.active {
-    color: var(--accent);
-    font-weight: bold;
-}
-
-.nav-item .icon {
-    display: block;
-    font-size: 21px;
-    margin-bottom: 4px;
-}
-
-.tasbeeh-box {
-    text-align: center;
-    padding: 20px 10px;
-}
-
-.counter-circle {
-    width: 175px;
-    height: 175px;
-    margin: 25px auto;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(145deg, #14532d, #2f8550);
-    color: white;
-    box-shadow: 0 8px 25px rgba(20,83,45,.3);
-    cursor: pointer;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    border: 7px solid rgba(255,255,255,.18);
-}
-
-.counter-circle h1 {
-    font-size: 49px;
-    margin: 0;
-}
-
-.counter-circle span {
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.counter-circle:active {
-    transform: scale(.96);
-}
-
-.count-label {
-    font-size: 17px;
-    font-weight: bold;
-    color: var(--accent);
-}
-
-.setting-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-}
-
-.setting-row:last-child {
-    border-bottom: none;
-}
-
-.setting-row select {
-    max-width: 55%;
-    background: var(--card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 8px;
-}
-
-.setting-row input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--accent);
-}
-
-.name-item {
-    background: var(--soft);
-    padding: 11px;
-    border-radius: 8px;
-    border-left: 3px solid var(--accent);
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 8px;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 30px 12px;
-    color: var(--muted);
-    line-height: 1.8;
-}
-
-input[type="search"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    background: var(--card);
-    color: var(--text);
-    margin-bottom: 14px;
-    font-size: 14px;
-}
-
-.hidden {
-    display: none !important;
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-@media (min-width: 650px) {
-    .container {
-        padding: 0 20px;
-    }
-
-    .arabic {
-        font-size: 31px;
-    }
-}
-
-@media (max-width: 380px) {
-    header h1 {
-        font-size: 17px;
-    }
-
-    .nav-item {
-        font-size: 9px;
-    }
-
-    .nav-item .icon {
-        font-size: 19px;
-    }
-
-    .card {
-        padding: 14px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>इक़बाल ऐप - पंज सूरह और दुआएँ</title>
+    <style>
+        :root {
+            --bg-color: #fbf9f1;
+            --card-bg: #ffffff;
+            --text-color: #2b2b2b;
+            --primary-color: #1b4332;
+            --accent-color: #2d6a4f;
+            --nav-bg: #ffffff;
+            --border-color: #e5dec9;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --primary-color: #52b788;
+            --accent-color: #40916c;
+            --nav-bg: #181818;
+            --border-color: #333333;
+            --shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.2s ease;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Devanagari', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding-bottom: 80px;
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 15px auto;
+            padding: 0 15px;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 19px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .arabic {
+            font-size: 24px;
+            text-align: right;
+            direction: rtl;
+            margin: 15px 0;
+            color: var(--text-color);
+            font-family: 'Traditional Arabic', 'Amiri', serif, Arial;
+            line-height: 2.3;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .translation {
+            font-size: 15px;
+            color: #444;
+            margin-top: 10px;
+            line-height: 1.7;
+            text-align: left;
+        }
+        body.dark-mode .translation {
+            color: #ccc;
+        }
+        .names-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .name-item {
+            background: rgba(45, 106, 79, 0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 2px;
+            border-top: 1px solid var(--border-color);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            text-align: center;
+            color: #777;
+            text-decoration: none;
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .nav-item.active {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            margin-bottom: 2px;
+        }
+        .tasbeeh-box {
+            text-align: center;
+            padding: 20px;
+        }
+        .counter-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            user-select: none;
+            transition: transform 0.1s;
+        }
+        .counter-circle:active {
+            transform: scale(0.95);
+        }
+        .counter-circle h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+        .btn-reset {
+            background: #d90429;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        audio {
+            width: 100%;
+            margin-top: 12px;
+            height: 35px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            width: 52px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            font-size: 1rem;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .theme-toggle .slider {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: left 0.25s ease, background 0.25s;
+        }
+        body.dark-mode .theme-toggle .slider {
+            left: 26px;
+            background: var(--accent-color);
+        }
+        .header-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .footer-note {
+            font-size: 0.7rem;
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.4;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <h1 id="app-title">📖 Iqbal App - Panj Surah</h1>
-    <p id="header-subtitle">कुरआन शरीफ • दुआएँ • दरूद शरीफ</p>
-</header>
+    <header>
+        <div class="header-wrapper">
+            <h1 id="app-title">📖 इक़बाल ऐप - पंज सूरह और दुआएँ</h1>
+            <div class="theme-toggle" id="themeToggle" role="button" aria-label="डार्क मोड टॉगल करें" tabindex="0">
+                <span class="toggle-icon">☀️</span>
+                <span class="slider"></span>
+                <span class="toggle-icon">🌙</span>
+            </div>
+        </div>
+    </header>
 
-<main class="container">
+    <div class="container">
+        
+        <!-- PAGE 1: HOME (Panj Surah & Ayat-ul-Kursi) -->
+        <div id="home-tab" class="tab-content active">
+            <h2>🌟 पंज सूरह और आयतुल कुर्सी</h2>
+            
+            <div class="card">
+                <h3>आयतुल कुर्सी (Ayat-ul-Kursi)</h3>
+                <div class="arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَلْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                <div class="translation"><b>तर्जुमा:</b> अल्लाह वो माबूद है जिसके सिवा कोई इबादत के लायक नहीं, जो हमेशा जिंदा रहने वाला और सबको थामने वाला है। न उसे ऊंघ आती है और न नींद। उसी का है जो कुछ आसमानों में है और जो कुछ ज़मीन में है... और वही बहुत बुलंद और बहुत अज़मत वाला है।</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/002255.mp3" type="audio/mpeg"></audio>
+            </div>
 
-    <!-- HOME -->
-    <section id="home-tab" class="tab-content active">
+            <div class="card">
+                <h3>1. सूरह यासीन (Surah Yaseen)</h3>
+                <p class="translation">कुरान शरीफ का दिल</p>
+                <audio controls><source src="https://server8.mp3quran.net/afs/036.mp3" type="audio/mpeg"></audio>
+                <br><a href="https://quran.com/36" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
+            </div>
 
-        <div class="hero">
-            <h2>السلام عليكم 🤲</h2>
-            <p>Iqbal App में आपका स्वागत है। कुरआन की तिलावत करें, दुआएँ पढ़ें और अल्लाह का ज़िक्र करें।</p>
-        </div
+            <div class="card">
+                <h3>2. सूरह अर-रहमान (Surah Ar-Rahman)</h3>
+                <p class="translation">अल्लाह की बेशुमार नेमतें</p>
+                <audio controls><source src="https://server8.mp3quran.net/afs/055.mp3" type="audio/mpeg"></audio>
+                <br><a href="https://quran.com/55" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
+            </div>
+
+            <div class="card">
+                <h3>3. सूरह अल-वाक़िआह (Surah Al-Waqi'ah)</h3>
+                <p class="translation">रिज़्क में बरकत के लिए</p>
+                <audio controls><source src="https://server8.mp3quran.net/afs/056.mp3" type="audio/mpeg"></audio>
+                <br><a href="https://quran.com/56" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
+            </div>
+
+            <div class="card">
+                <h3>4. सूरह अल-मुल्क (Surah Al-Mulk)</h3>
+                <p class="translation">कब्र के अज़ाब से हिफाजत</p>
+                <audio controls><source src="https://server8.mp3quran.net/afs/067.mp3" type="audio/mpeg"></audio>
+                <br><a href="https://quran.com/67" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
+            </div>
+
+            <div class="card">
+                <h3>5. सूरह अल-मुज़म्मिल (Surah Al-Muzammil)</h3>
+                <p class="translation">दिल का सुकून और रात की इबादत</p>
+                <audio controls><source src="https://server8.mp3quran.net/afs/073.mp3" type="audio/mpeg"></audio>
+                <br><a href="https://quran.com/73" target="_blank" class="btn">पूर्ण सूरा पढ़ें (Quran.com)</a>
+            </div>
+
+            <div class="card">
+                <h3>सूरह अल-कौसर (Surah Al-Kauthar)</h3>
+                <div class="arabic">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ</div>
+                <div class="translation"><b>तर्जुमा:</b> बेशक हमने आपको कौसर अता किया है। पस आप अपने रब के लिए नमाज पढ़िए और कुर्बानी कीजिए। बेशक आपका दुश्मन ही बे-निशान है।</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/108.mp3" type="audio/mpeg"></audio>
+            </div>
+
+            <div class="card">
+                <h3>सूरह अल-कद्र (Surah Al-Qadr)</h3>
+                <div class="arabic">إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ ۝ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ ۝ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ ۝ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ ۝ سَلَامٌ هِيَ حَتَّى مَطْلَعِ الْفَجْرِ</div>
+                <div class="translation"><b>तर्जुमा:</b> बेशक हमने इसे शबे-कद्र में उतारा है। और आप क्या जानें कि शबे-कद्र क्या है? शबे-कद्र हजार महीनों से बेहतर है। उसमें फरिश्ते और रूह अपने रब के हुक्म से हर काम के लिए उतरते हैं। वह रात फज्र के निकलने तक पूरी की पूरी सलामती है।</div>
+                <audio controls><source src="https://server8.mp3quran.net/afs/097.mp3" type="audio/mpeg"></audio>
+            </div>
+            <div class="footer-note">— पंज सूरह और मस्नून दुआएँ —</div>
+        </div>
+
+        <!-- PAGE 2: DUAS, Azan, Ashura, Ganjul Arsh, Nade Ali, Ahd-nama & Darood -->
+        <div id="duas-tab" class="tab-content">
+            <h2>🤲 दुआएँ, अज़ान और दुरूद</h2>
+
+            <div class="card">
+                <h3>दुरूद-ए-इब्राहिमी (Darood-e-Ibrahimi)</h3>
+                <div class="arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ • اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+                <div class="translation"><b>तर्जुमा:</b> ऐ अल्लाह! रहमत नाजिल फरमा हजरत मुहम्मद ﷺ पर और उनकी औलाद पर, जिस तरह तूने रहमत भेजी इब्राहिम (अ.स.) पर और उनकी औलाद पर, बेशक तू तारीफ के काबिल और बुजुर्गी वाला है। और बरकत नाजिल फरमा मुहम्मद ﷺ पर और उनकी औलाद पर, जिस तरह तूने बरकत भेजी इब्राहिम (अ.स.) पर और उनकी औलाद पर, बेशक तू तारीफ के काबिल और बुजुर्गी वाला है।</div>
+            </div>
+
+            <div class="card">
+                <h3>अज़ान (Mukammal Azan)</h3>
+                <div class="arabic">اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ ۝ اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ ۝ أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ ۝ أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ ۝ أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ ۝ أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ ۝ حَي عَلَى الصَّلَاةِ ۝ حَي عَلَى الصَّلَاةِ ۝ حَي عَلَى الْفَلَاحِ ۝ حَي عَلَى الْفَلَاحِ ۝ اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ ۝ لَا إِلَهَ إِلَّا اللَّهُ</div>
+                <div class="translation"><b>तर्जुमा:</b> अल्लाह सबसे बड़ा है, अल्लाह सबसे बड़ा है। मैं गवाही देता हूँ कि अल्लाह के सिवा कोई माबूद नहीं। मैं गवाही देता हूँ कि मुहम्मद ﷺ अल्लाह के रसूल हैं। नमाज के लिए आओ, कामयाबी की तरफ आओ। अल्लाह सबसे बड़ा है, अल्लाह के सिवा कोई माबूद नहीं।</div>
+            </div>
+            
+            <div class="card">
+                <h3>दुआ-ए-आशूरा (Mukammal Dua-e-Ashura)</h3>
+                <div class="arabic">سُبْحَانَ اللَّهِ مِلْءَ الْمِيزَانِ وَمُنْتَهَى الْعِلْمِ وَمَبْلَغَ الرِّضَا وَزِنَةَ الْعَرْشِ، لَا مَلْجَأَ وَلَا مَنْجَى مِنَ اللَّهِ إِلَّا إِلَيْهِ. سُبْحَانَ اللَّهِ عَدَدَ الشَّفْعِ وَالْوَتْرِ، وَعَدَدَ كَلِمَاتِ اللَّهِ التَّامَّاتِ كُلِّهَا</div>
+                <div class="translation"><b>तर्जुमा:</b> पाक है अल्लाह तराजू के वजन के बराबर, इल्म की इंतहा, रज़ा के मब्ल्ग और अर्श के वजन के बराबर। अल्लाह के अज़ाब से बचने के लिए उसी की तरफ पनाह है। पाक है अल्लाह जुश्त और ताक (संख्या) के बराबर और अल्लाह के तमाम पूरे कलामों के बराबर।</div>
+            </div>
+
+            <div class="card">
+                <h3>नद-ए-अली (Mukammal Dua-e-Nade Ali)</h3>
+                <div class="arabic">نَادِ عَلِيًّا مَظْهَرَ الْعَجَائِبِ تَجِدْهُ عَوْنًا لَكَ فِي النَّوَائِبِ، كُلُّ هَمٍّ وَغَمٍّ سَيَنْجَلِي بِوَلَايَتِكَ يَا عَلِيُّ يَا عَلِيُّ يَا عَلِيُّ</div>
+                <div class="translation"><b>तर्जुमा:</b> पुकारो अली को जो अजाइब के जाहिर करने वाले हैं, तुम उनको अपनी मुश्किलों में मददगार पाओगे। हर रंज व गम दूर हो जाएगा आपकी विलायत के वसीले से, या अली! या अली! या अली!</div>
+            </div>
+
+            <div class="card">
+                <h3>दुआ-ए-गंजुल अर्श (Mukammal Dua-e-Ganjul Arsh)</h3>
+                <div class="arabic">لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْمَلِكِ الْقُدُّوسِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْعَزِيزِ الْحَكِيمِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الرَّؤُوفِ الرَّحِيمِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْغَفُورِ الرَّحِيمِ</div>
+                <div class="translation"><b>तर्जुमा:</b> अल्लाह के सिवा कोई माबूद नहीं, पाक है बादशाह जो पाकीज़ा है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो इज्जत और हिकमत वाला है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो बहुत मेहरबान और रहम वाला है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो बख्शने वाला और रहम करने वाला है।</div>
+            </div>
+
+            <div class="card">
+                <h3>अहदनामा (Mukammal Ahd-nama)</h3>
+                <div class="arabic">اللّهُمَّ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ الرَّحْمَٰنِ الرَّحِيمِ، إِنِّي أَعْهَدُ إِلَيْكَ فِي هَذِهِ الْحَيَاةِ الدُّنْيَا بِأَنِّي أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ</div>
+                <div class="translation"><b>तर्जुमा:</b> ऐ अल्लाह! आसमानों और ज़मीन को पैदा करने वाले, छुपी और खुली हर चीज़ को जानने वाले, बड़े मेहरबान निहायत रहम वाले! मैं तुझसे इस दुनिया की जिंदगी में अहद करता हूँ कि तेरे सिवा कोई माबूद नहीं, तू अकेला है तेरा कोई साझी नहीं, और मुहम्मद ﷺ तेरे बंदे और रसूल हैं।</div>
+            </div>
+            <div class="footer-note">— पंज सूरह और मस्नून दुआएँ —</div>
+        </div>
+
+        <!-- PAGE 3: TASBEEH -->
+        <div id="tasbeeh-tab" class="tab-content">
+            <div class="tasbeeh-box">
+                <h2>📿 डिजिटल तस्बीह</h2>
+                <p>सुभानअल्लाह / दुरूद</p>
+                <div class="counter-circle" onclick="incrementCount()">
+                    <h1 id="count-display">0</h1>
+                    <span style="font-size: 11px;">गिनने के लिए टैप करें</span>
+                </div>
+                <button class="btn-reset" onclick="resetCount()">रीसेट काउंटर</button>
+            </div>
+        </div>
+
+        <!-- PAGE 4: BOOKMARKS -->
+        <div id="bookmarks-tab" class="tab-content">
+            <h2>🔖 सहेजे गए और बुकमार्क</h2>
+            <p style="text-align: center; color: #777; margin-top: 40px;">अभी तक कोई बुकमार्क नहीं है।</p>
+        </div>
+
+        <!-- PAGE 5: TOOLS (99 Names & Total Quran Ayats) -->
+        <div id="extras-tab" class="tab-content">
+            <h2>✨ इस्लामी टूल्स और जानकारी</h2>
+            
+            <div class="card">
+                <h3>📖 कुरान के आंकड़े (कुल आयतें)</h3>
+                <p class="translation"><b>कुल सूरतें:</b> 114<br><b>कुल आयतें (Total Ayats):</b> 6,236<br><b>कुल पारा (Juz/Para):</b> 30<br><b>कुल रुकू:</b> 558</p>
+            </div>
+
+            <div class="card">
+                <h3>अल्लाह के 99 नाम (अस्मा-उल-हुस्ना - पूर्ण)</h3>
+                <div class="names-grid">
+                    <div class="name-item">1. الرَّحْمَنُ (Ar-Rahman) - सबसे बड़ा मेहरबान</div>
+                    <div class="name-item">2. الرَّحِيمُ (Ar-Raheem) - निहायत रहम करने वाला</div>
+                    <div class="name-item">3. الْمَلِكُ (Al-Malik) - असली बादशाह</div>
+                    <div class="name-item">4. الْقُدُّوسُ (Al-Quddus) - अत्यंत पवित्र</div>
+                    <div class="name-item">5. السَّلَامُ (As-Salam) - शांति और सलामती देने वाला</div>
+                    <div class="name-item">6. الْمُؤْمِنُ (Al-Mu'min) - अमन और अमान देने वाला</div>
+                    <div class="name-item">7. الْمُهَيْمِنُ (Al-Muhaymin) - सबका نگهبان व मुहाफ़िज़</div>
+                    <div class="name-item">8. الْعَزِيزُ (Al-Azeez) - सबसे ताकतवर और गालिब</div>
+                    <div class="name-item">9. الْجَبَّارُ (Al-Jabbar) - सब पर हावी और दुरुस्त करने वाला</div>
+                    <div class="name-item">10. الْمُتَكَبِّرُ (Al-Mutakabbir) - बड़ाई और अज़मत वाला</div>
+                    <div class="name-item">11. الْخَالِقُ (Al-Khaliq) - पैदा करने वाला</div>
+                    <div class="name-item">12. الْبَارِئُ (Al-Bari') - ठीक-ठाक बनाने वाला</div>
+                    <div class="name-item">13. الْمُصَوِّرُ (Al-Musawwir) - सूरत और शक्ल देने वाला</div>
+                    <div class="name-item">14. الْغَفَّارُ (Al-Ghaffar) - बार-बार बख्शने वाला</div>
+                    <div class="name-item">15. الْقَهَّارُ (Al-Qahhar) - सब पर काबू रखने वाला</div>
+                    <div class="name-item">16. الْوَهَّابُ (Al-Wahhab) - बिना शर्त बहुत अता करने वाला</div>
+                    <div class="name-item">17. الرَّزَّاقُ (Ar-Razzaq) - रोजी और रिज़्क देने वाला</div>
+                    <div class="name-item">18. الْفَتَّاحُ (Al-Fattah) - मुश्किलें खोलने वाला, फतह देने वाला</div>
+                    <div class="name-item">19. الْعَلِيمُ (Al-Aleem) - सब कुछ जानने वाला</div>
+                    <div class="name-item">20. الْقَابِضُ (Al-Qabid) - रोजी तंग करने वाला (इम्तिहान के लिए)</div>
+                    <div class="name-item">21. الْبَاسِطُ (Al-Basit) - रोजी बढ़ाने और फैलाने वाला</div>
+                    <div class="name-item">22. الخَافِضُ (Al-Khafid) - काफिरों और सरकशों को पस्त करने वाला</div>
+                    <div class="name-item">23. الرَّافِعُ (Al-Rafi') - ईमान वालों को बुलंद करने वाला</div>
+                    <div class="name-item">24. الْمُعِزُّ (Al-Mu'izz) - इज्जत देने वाला</div>
+                    <div class="name-item">25. الْمُذِلُّ (Al-Muzill) - ज़लील करने वाला (नाफरमानों को)</div>
+                    <div class="name-item">26. السَّمِيعُ (As-Samee') - सब कुछ सुनने वाला</div>
+                    <div class="name-item">27. الْبَصِيرُ (Al-Baseer) - सब कुछ देखने वाला</div>
+                    <div class="name-item">28. الْحَكَمُ (Al-Hakam) - फैसला करने वाला</div>
+                    <div class="name-item">29. الْعَدْلُ (Al-Adl) - सरासर इंसाफ करने वाला</div>
+                    <div class="name-item">30. اللَّطِيفُ (Al-Lateef) - बारीकबीनों और पोशीदा बातों को जानने वाला</div>
+                    <div class="name-item">31. الْخَبِيرُ (Al-Khabeer) - हर खबर रखने वाला</div>
+                    <div class="name-item">32. الْحَلِيمُ (Al-Haleem) - बहुत बर्दबार और सब्र वाला</div>
+                    <div class="name-item">33. الْعَظِيمُ (Al-Azeem) - सबसे बड़ा और अज़मत वाला</div>
+                    <div class="name-item">34. الْغَفُورُ (Al-Gh
