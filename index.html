@@ -1,209 +1,267 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iqbal App - Panj Surah & Duas</title>
     <style>
         :root {
-            --bg-color: #fbf9f1;
+            --primary-color: #1b4d3e;
+            --bg-color: #f7f9f6;
             --card-bg: #ffffff;
-            --text-color: #2b2b2b;
-            --primary-color: #1b4332;
-            --accent-color: #2d6a4f;
+            --text-color: #2c3e50;
+            --border-color: #e2e8f0;
             --nav-bg: #ffffff;
-            --border-color: #e5dec9;
+            --nav-text: #718096;
+            --nav-active: #1b4d3e;
         }
-        body.dark-mode {
+
+        [data-theme="dark"] {
+            --primary-color: #267358;
             --bg-color: #121212;
             --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --primary-color: #52b788;
-            --accent-color: #40916c;
-            --nav-bg: #181818;
-            --border-color: #333333;
+            --text-color: #e2e8f0;
+            --border-color: #2d3748;
+            --nav-bg: #1a1a1a;
+            --nav-text: #a0aec0;
+            --nav-active: #4ade80;
         }
-        body {
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding-bottom: 75px;
+            padding-bottom: 70px;
             transition: background 0.3s, color 0.3s;
         }
+
         header {
             background-color: var(--primary-color);
             color: white;
             padding: 15px;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        header h1 {
-            margin: 0;
-            font-size: 20px;
-        }
+
         .container {
-            max-width: 600px;
-            margin: 15px auto;
-            padding: 0 15px;
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
+
         .card {
-            background: var(--card-bg);
-            padding: 18px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        .card h3 {
-            margin-top: 0;
-            color: var(--accent-color);
-            font-size: 19px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
-        .arabic {
-            font-size: 24px;
+
+        .arabic-text {
+            font-size: 1.5rem;
             text-align: right;
             direction: rtl;
-            margin: 15px 0;
-            color: var(--text-color);
-            font-family: 'Amiri', serif, Arial;
-            line-height: 2.3;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            margin-bottom: 12px;
+            line-height: 2.2;
+            font-family: 'Traditional Arabic', serif;
         }
+
         .translation {
-            font-size: 15px;
-            color: #444;
-            margin-top: 10px;
-            line-height: 1.7;
-            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            border-top: 1px dashed var(--border-color);
+            padding-top: 8px;
         }
-        body.dark-mode .translation {
-            color: #ccc;
+
+        /* Audio Player Styling */
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-color);
         }
-        .names-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            font-size: 14px;
-            margin-top: 10px;
+
+        .audio-player audio {
+            width: 100%;
+            height: 35px;
         }
-        .name-item {
-            background: rgba(45, 106, 79, 0.05);
-            padding: 8px 12px;
-            border-radius: 6px;
-            border-left: 3px solid var(--accent-color);
-        }
-        .nav-bar {
+
+        /* Bottom Navigation */
+        nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: var(--nav-bg);
+            background-color: var(--nav-bg);
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-around;
-            padding: 8px 2px;
-            border-top: 1px solid var(--border-color);
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            padding: 8px 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
             z-index: 1000;
         }
+
         .nav-item {
             text-align: center;
-            color: #777;
+            color: var(--nav-text);
             text-decoration: none;
-            font-size: 10px;
-            cursor: pointer;
+            font-size: 0.75rem;
             flex: 1;
+            cursor: pointer;
         }
+
         .nav-item.active {
-            color: var(--accent-color);
+            color: var(--nav-active);
             font-weight: bold;
         }
-        .nav-item svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+
+        .nav-item span {
+            display: block;
+            font-size: 1.2rem;
             margin-bottom: 2px;
         }
-        .tasbeeh-box {
-            text-align: center;
-            padding: 20px;
+
+        .tab-content {
+            display: none;
         }
-        .counter-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            user-select: none;
-        }
-        .counter-circle h1 {
-            margin: 0;
-            font-size: 40px;
-        }
-        .btn-reset {
-            background: #d90429;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .setting-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        audio {
-            width: 100%;
-            margin-top: 12px;
-            height: 35px;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 14px;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 13px;
+
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <header>
-        <h1 id="app-title">📖 Iqbal App - Panj Surah & Duas</h1>
+        📖 Iqbal App - Panj Surah & Duas
     </header>
 
     <div class="container">
-        
-        <!-- PAGE 1: HOME (Panj Surah & Ayat-ul-Kursi) -->
-        <div id="home-tab" class="tab-content active">
-            <h2>🌟 The Noble Five & Surahs</h2>
-            
+        <!-- Duas Tab -->
+        <div id="tab-duas" class="tab-content active">
             <div class="card">
-                <h3>आयतुल कुर्सी (Ayat-ul-Kursi)</h3>
-                <div class="arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ 
+                <div class="card-title">दुआ-ए-गंजुल अर्श (Mukammal Dua-e-Ganjul Arsh)</div>
+                <div class="arabic-text">
+                    لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْمَلِكِ الْقُدُّوسِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْعَزِيزِ الْحَكِيمِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الرَّؤُوفِ الرَّحِيمِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْغَفُورِ الرَّحِيمِ
+                </div>
+                <div class="translation">
+                    <strong>तर्जुमा:</strong> अल्लाह के सिवा कोई माबूद नहीं, पाक है बादशाह जो पाकीज़ा है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो इज्जत और हिकमत वाला है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो बहुत मेहरबान और रहम वाला है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो बख्शने वाला और रहम करने वाला है।
+                </div>
+                <div class="audio-player">
+                    <audio controls>
+                        <!-- Yahan aap apni audio file ka correct link ya path daal sakte hain -->
+                        <source src="audio/ganjul-arsh.mp3" type="audio/mpeg">
+                        Aapka browser audio element ko support nahi karta.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Tab -->
+        <div id="tab-home" class="tab-content">
+            <div class="card">
+                <div class="card-title">Welcome to Iqbal App</div>
+                <p>Yahan aapko Panj Surah, Duas aur Tasbeeh ki sahulat milegi. Neeche diye gaye navigation se aap alag-alag sections par ja sakte hain.</p>
+            </div>
+        </div>
+
+        <!-- Tasbeeh Tab -->
+        <div id="tab-tasbeeh" class="tab-content">
+            <div class="card">
+                <div class="card-title">Digital Tasbeeh</div>
+                <p>Tasbeeh feature jald hi yahan update hoga.</p>
+            </div>
+        </div>
+
+        <!-- Saved/Bookmarks Tab -->
+        <div id="tab-saved" class="tab-content">
+            <div class="card">
+                <div class="card-title">Bookmarks</div>
+                <p>Aapki saved ki gayi Duas yahan dikhengi.</p>
+            </div>
+        </div>
+
+        <!-- Tools Tab -->
+        <div id="tab-tools" class="tab-content">
+            <div class="card">
+                <div class="card-title">Islamic Tools</div>
+                <p>Qibla direction aur Islamic calendar tools.</p>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="tab-settings" class="tab-content">
+            <div class="card">
+                <div class="card-title">Settings</div>
+                <button onclick="toggleTheme()" style="padding: 8px 15px; cursor: pointer;">Dark/Light Mode Toggle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav>
+        <a class="nav-item" onclick="switchTab('home', this)">
+            <span>🏠</span>Home
+        </a>
+        <a class="nav-item active" onclick="switchTab('duas', this)">
+            <span>📖</span>Duas
+        </a>
+        <a class="nav-item" onclick="switchTab('tasbeeh', this)">
+            <span>📿</span>Tasbeeh
+        </a>
+        <a class="nav-item" onclick="switchTab('saved', this)">
+            <span>🔖</span>Saved
+        </a>
+        <a class="nav-item" onclick="switchTab('tools', this)">
+            <span>🛠️</span>Tools
+        </a>
+        <a class="nav-item" onclick="switchTab('settings', this)">
+            <span>⚙️</span>Settings
+        </a>
+    </nav>
+
+    <script>
+        function switchTab(tabName, element) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            // Show target tab and set active nav
+            document.getElementById('tab-' + tabName).classList.add('active');
+            element.classList.add('active');
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
+        }
+    </script>
+</body>
+</html>
