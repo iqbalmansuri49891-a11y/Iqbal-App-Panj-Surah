@@ -37,7 +37,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-bottom: 70px;
+            padding-bottom: 75px;
             transition: background 0.3s, color 0.3s;
         }
 
@@ -79,7 +79,7 @@
             direction: rtl;
             margin-bottom: 12px;
             line-height: 2.2;
-            font-family: 'Traditional Arabic', serif;
+            font-family: 'Traditional Arabic', 'Amiri', serif;
         }
 
         .translation {
@@ -92,9 +92,6 @@
 
         /* Audio Player Styling */
         .audio-player {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             margin-top: 12px;
             padding-top: 8px;
             border-top: 1px solid var(--border-color);
@@ -156,8 +153,27 @@
     </header>
 
     <div class="container">
-        <!-- Duas Tab -->
+        <!-- Duas Tab (Default Active) -->
         <div id="tab-duas" class="tab-content active">
+            
+            <!-- Ayat-ul-Kursi -->
+            <div class="card">
+                <div class="card-title">आयतुल कुर्सी (Ayat-ul-Kursi)</div>
+                <div class="arabic-text">
+                    اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ
+                </div>
+                <div class="translation">
+                    <strong>तर्जुमा:</strong> अल्लाह वह माबूद है जिसके सिवा कोई इबादत के लाइक नहीं, जो ज़िंदा है और पूरी कायनात को थामे हुए है।
+                </div>
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="audio/ayatul-kursi.mp3" type="audio/mpeg">
+                        Aapka browser audio element support nahi karta.
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Dua-e-Ganjul Arsh -->
             <div class="card">
                 <div class="card-title">दुआ-ए-गंजुल अर्श (Mukammal Dua-e-Ganjul Arsh)</div>
                 <div class="arabic-text">
@@ -168,19 +184,19 @@
                 </div>
                 <div class="audio-player">
                     <audio controls>
-                        <!-- Yahan aap apni audio file ka correct link ya path daal sakte hain -->
                         <source src="audio/ganjul-arsh.mp3" type="audio/mpeg">
-                        Aapka browser audio element ko support nahi karta.
+                        Aapka browser audio element support nahi karta.
                     </audio>
                 </div>
             </div>
+
         </div>
 
         <!-- Home Tab -->
         <div id="tab-home" class="tab-content">
             <div class="card">
                 <div class="card-title">Welcome to Iqbal App</div>
-                <p>Yahan aapko Panj Surah, Duas aur Tasbeeh ki sahulat milegi. Neeche diye gaye navigation se aap alag-alag sections par ja sakte hain.</p>
+                <p>Yahan aapko Panj Surah, Duas aur Tasbeeh ki sahulat milegi. Neeche diye gaye navigation se aap Duas aur baki sections par ja sakte hain.</p>
             </div>
         </div>
 
@@ -188,7 +204,7 @@
         <div id="tab-tasbeeh" class="tab-content">
             <div class="card">
                 <div class="card-title">Digital Tasbeeh</div>
-                <p>Tasbeeh feature jald hi yahan update hoga.</p>
+                <p>Digital Tasbeeh counter jald hi yahan active hoga.</p>
             </div>
         </div>
 
@@ -204,7 +220,7 @@
         <div id="tab-tools" class="tab-content">
             <div class="card">
                 <div class="card-title">Islamic Tools</div>
-                <p>Qibla direction aur Islamic calendar tools.</p>
+                <p>Qibla direction aur Islamic utilities yahan available hongi.</p>
             </div>
         </div>
 
@@ -212,7 +228,7 @@
         <div id="tab-settings" class="tab-content">
             <div class="card">
                 <div class="card-title">Settings</div>
-                <button onclick="toggleTheme()" style="padding: 8px 15px; cursor: pointer;">Dark/Light Mode Toggle</button>
+                <button onclick="toggleTheme()" style="padding: 10px 18px; cursor: pointer; background: var(--primary-color); color: white; border: none; border-radius: 5px;">Dark/Light Mode Toggle</button>
             </div>
         </div>
     </div>
