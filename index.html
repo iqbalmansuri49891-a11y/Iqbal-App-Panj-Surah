@@ -28,6 +28,30 @@ button,.button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9
 button.secondary,.button.secondary{background:var(--bg);color:var(--text);border:1px solid var(--line)}
 button.gold{background:var(--gold);color:#3b2b00}
 .note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:12px}
+
+/* Toast Notification Styling */
+#toast {
+    position: fixed;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1e2925;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10000;
+}
+#toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
 .tabs{position:fixed;z-index:10;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:var(--card);border-top:1px solid var(--line);padding:8px 3px calc(8px + env(safe-area-inset-bottom))}
 .tab{background:transparent;color:var(--muted);padding:7px 5px;flex:1;font-size:11px;border-radius:10px;cursor:pointer;border:none;}
 .tab.active{color:#fff;background:var(--green)}
@@ -108,6 +132,10 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
   </section>
   <footer>Made with care • Iqbal App - Panj Surah</footer>
 </main>
+
+<!-- Custom Toast Popup -->
+<div id="toast"></div>
+
 <nav class="tabs">
   <button class="tab active" data-page="home" onclick="showPage('home',this)">🏠<br><span>Home</span></button>
   <button class="tab" data-page="duas" onclick="showPage('duas',this)">📖<br><span>Dua</span></button>
@@ -115,6 +143,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
   <button class="tab" data-page="bookmarks" onclick="showPage('bookmarks',this)">⭐<br><span>Saved</span></button>
   <button class="tab" data-page="settings" onclick="showPage('settings',this)">⚙️<br><span>Settings</span></button>
 </nav>
+
 <script>
 const surahs = [
  {name:'Surah Yaseen',arabic:'سورة يس',desc:'36th Surah - Arabic reading & recitation',num:'036',symbol:'📖'},
@@ -127,6 +156,16 @@ const duaItems=[
  {name:'Durood Sharif',desc:'Durood-e-Ibrahimi aur dua ka source',symbol:'📿'},
  {name:'Ganjul Arsh',desc:'Dua - Mubaraka dua text',symbol:'🤲'}
 ];
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2000);
+}
+
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function renderCards(){
  document.getElementById('surahGrid').innerHTML=surahs.map(s=>`<article class="card"><div class="symbol">${s.symbol}</div><h3>${s.name}</h3><div style="font-size:20px;color:var(--green);margin:5px 0 8px;direction:rtl;font-family:'Traditional Arabic',serif">${s.arabic}</div><p>${s.desc}</p><div class="btnrow"><a class="button" href="https://quran.com/${parseInt(s.num,10)}" target="_blank" rel="noopener">Read</a><a class="button secondary" href="https://server8.mp3quran.net/afs/${s.num}.mp3" target="_blank" rel="noopener">Audio</a><button class="secondary" onclick="saveBookmark('${s.name}','Surah')">⭐</button></div></article>`).join('');
@@ -139,10 +178,10 @@ function countUp(){count++;document.getElementById('count').textContent=count}
 function resetCount(){count=0;document.getElementById('count').textContent=count}
 function saveCount(){savedTotal+=count;localStorage.setItem('iam_saved_count',savedTotal);document.getElementById('savedCountText').textContent='Saved total: '+savedTotal;resetCount()}
 function getBookmarks(){try{return JSON.parse(localStorage.getItem('iam_bookmarks')||'[]')}catch(e){return []}}
-function saveBookmark(name,type){let b=getBookmarks();if(!b.some(x=>x.name===name)){b.push({name,type});localStorage.setItem('iam_bookmarks',JSON.stringify(b))}alert(name+' bookmarked');renderBookmarks()}
+function saveBookmark(name,type){let b=getBookmarks();if(!b.some(x=>x.name===name)){b.push({name,type});localStorage.setItem('iam_bookmarks',JSON.stringify(b))}showToast(name+' bookmarked');renderBookmarks()}
 function renderBookmarks(){let b=getBookmarks(),el=document.getElementById('bookmarkList');el.innerHTML=b.length?b.map((x,i)=>`<div class="list-item"><div class="row"><div><b>${esc(x.name)}</b><div class="note">${esc(x.type)}</div></div><button class="secondary" onclick="removeBookmark(${i})">Remove</button></div></div>`).join(''):'<div class="empty">Abhi koi bookmark nahi hai.</div>'}
-function removeBookmark(i){let b=getBookmarks();b.splice(i,1);localStorage.setItem('iam_bookmarks',JSON.stringify(b));renderBookmarks()}
-function clearBookmarks(){if(confirm('Saare bookmarks clear karein?')){localStorage.removeItem('iam_bookmarks');renderBookmarks()}}
+function removeBookmark(i){let b=getBookmarks();b.splice(i,1);localStorage.setItem('iam_bookmarks',JSON.stringify(b));renderBookmarks();showToast('Bookmark removed')}
+function clearBookmarks(){if(confirm('Saare bookmarks clear karein?')){localStorage.removeItem('iam_bookmarks');renderBookmarks();showToast('All bookmarks cleared')}}
 if(localStorage.getItem('iam_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️'}
 document.getElementById('savedCountText').textContent='Saved total: '+savedTotal;
 renderCards();renderBookmarks();
