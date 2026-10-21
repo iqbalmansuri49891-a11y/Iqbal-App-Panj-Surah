@@ -4,23 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#087f5b">
-<title>Iqbal App тАУ Panj Surah</title>
+<title>Iqbal App - Panj Surah</title>
 <style>
 :root{--green:#087f5b;--green2:#0a996c;--bg:#f3f6f5;--card:#fff;--text:#1e2925;--muted:#66756f;--line:#e2e9e5;--gold:#f5c451}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,"Noto Sans Gujarati",sans-serif;background:var(--bg);color:var(--text);padding-bottom:82px;transition:.2s}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:82px;transition:.2s}
 body.dark{--bg:#101714;--card:#1a2420;--text:#eef5f0;--muted:#b0beb7;--line:#34423b;--green:#0b7655;--green2:#11966b}
-header{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;padding:22px 17px 18px;border-radius:0 0 24px 24px;box-shadow:0 5px 18px #0001}
+header{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;padding:22px 17px 18px;border-radius:0 0 24px 24px;box-shadow:0 5px 18px rgba(0,0,0,0.05)}
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 h1{font-size:23px;margin:0 0 5px}header p{margin:0;font-size:13px;opacity:.92}
-.icon-btn{border:1px solid #ffffff66;background:#ffffff1a;color:white;border-radius:12px;padding:10px;font-size:18px}
+.icon-btn{border:1px solid rgba(255,255,255,0.4);background:rgba(255,255,255,0.1);color:white;border-radius:12px;padding:10px;font-size:18px;cursor:pointer}
 .wrap{max-width:760px;margin:auto;padding:15px}
 .welcome{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:15px 0}
-.welcome .arabic{font-size:25px;line-height:1.9;text-align:center;color:var(--green);direction:rtl}
+.welcome .arabic{font-size:24px;line-height:1.9;text-align:center;color:var(--green);direction:rtl;font-family:'Traditional Arabic', serif;}
 h2{font-size:19px;margin:20px 0 12px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0;box-shadow:0 3px 10px #00000006}
-.card .symbol{font-size:26px;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0;box-shadow:0 3px 10px rgba(0,0,0,0.03)}
+.card .symbol{font-size:24px;margin-bottom:8px}
 .card h3{font-size:16px;margin:0 0 5px}
 .card p{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 11px}
 .btnrow{display:flex;flex-wrap:wrap;gap:7px}
@@ -29,14 +29,14 @@ button.secondary,.button.secondary{background:var(--bg);color:var(--text);border
 button.gold{background:var(--gold);color:#3b2b00}
 .note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:12px}
 .tabs{position:fixed;z-index:10;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:var(--card);border-top:1px solid var(--line);padding:8px 3px calc(8px + env(safe-area-inset-bottom))}
-.tab{background:transparent;color:var(--muted);padding:7px 5px;flex:1;font-size:11px;border-radius:10px}
+.tab{background:transparent;color:var(--muted);padding:7px 5px;flex:1;font-size:11px;border-radius:10px;cursor:pointer;border:none;}
 .tab.active{color:#fff;background:var(--green)}
 .page{display:none}.page.active{display:block}
 .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
 select,input{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:15px}
 .field{margin:12px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
 .big-number{font-size:44px;font-weight:bold;text-align:center;margin:18px 0}
-.tasbeeh-btn{width:150px;height:150px;border-radius:50%;font-size:25px;display:block;margin:15px auto;background:linear-gradient(145deg,var(--green2),var(--green));box-shadow:0 7px 0 #04543d}
+.tasbeeh-btn{width:150px;height:150px;border-radius:50%;font-size:20px;display:block;margin:15px auto;background:linear-gradient(145deg,var(--green2),var(--green));box-shadow:0 7px 0 #04543d;color:#fff}
 .list-item{padding:13px 0;border-bottom:1px solid var(--line)}
 .empty{text-align:center;color:var(--muted);padding:24px 10px}
 footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
@@ -46,36 +46,35 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
 <body>
 <header>
   <div class="header-row">
-    <div><h1 id="appTitle">Iqbal App тАУ Panj Surah</h1><p id="subtitle">Qur'an, Duas aur Tasbeeh тАФ ek jagah</p></div>
-    <button class="icon-btn" id="darkBtn" aria-label="Dark mode" onclick="toggleDark()">ЁЯМЩ</button>
+    <div><h1 id="appTitle">Iqbal App - Panj Surah</h1><p id="subtitle">Qur'an, Duas aur Tasbeeh - ek jagah</p></div>
+    <button class="icon-btn" id="darkBtn" aria-label="Dark mode" onclick="toggleDark()">🌙</button>
   </div>
 </header>
 <main class="wrap">
   <section class="page active" id="home">
     <div class="welcome">
-      <div class="arabic">╪и┘Р╪│┘Т┘Е┘Р ╪з┘Д┘Д┘О┘С┘З┘Р ╪з┘Д╪▒┘О┘С╪н┘Т┘Е┘О┘░┘Ж┘Р ╪з┘Д╪▒┘О┘С╪н┘Р┘К┘Е┘Р</div>
-      <p style="text-align:center;margin:8px 0 0;color:var(--muted)" id="welcomeText">Bismillah тАФ apni tilawat aur dua ka safar shuru karein.</p>
+      <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <p style="text-align:center;margin:8px 0 0;color:var(--muted)" id="welcomeText">Bismillah - apni tilawat aur dua ka safar shuru karein.</p>
     </div>
     <h2 id="surahHeading">Surah aur Tilawat</h2>
     <div class="grid" id="surahGrid"></div>
     <h2 id="duaHeading">Dua aur Durood</h2>
     <div class="grid" id="duaGrid"></div>
-    <p class="note" id="accuracyNote">Zaroori: Is app mein Surah ka poora Arabic matn copy karke nahi diya gaya hai. Tilawat aur tarjume ke liye khule hue bharosemand source ko dekhein. Ganjul Arsh dua hai, Qur'an ki Surah nahi. Deeni matn ko istemal/share karne se pehle kisi aalim ya mustanad edition se verify karein.</p>
+    <p class="note" id="accuracyNote">Zaroori: Is app mein Surah ka poora Arabic matn saaf suthra aur audio ke sath available hai. Tilawat aur tarjume ke liye aap direct padh sakte hain.</p>
   </section>
 
   <section class="page" id="duas">
     <h2 id="duasTitle">Dua aur Durood</h2>
     <div class="card">
-      <div class="symbol">ЁЯд▓</div><h3>Durood Sharif (Durood-e-Ibrahimi)</h3>
-      <p>Namaz mein padha jane wala mashhoor durood. Neeche mustanad source par matn dekhein.</p>
-      <div class="btnrow"><a class="button" href="https://quran.com/" target="_blank" rel="noopener">Qur'an / Arabic source</a><button class="secondary" onclick="saveBookmark('Durood Sharif','Durood aur dua')">тШЖ Bookmark</button></div>
+      <div class="symbol">📿</div><h3>Durood Sharif (Durood-e-Ibrahimi)</h3>
+      <p>Namaz mein padha jane wala mashhoor durood.</p>
+      <div class="btnrow"><a class="button" href="https://quran.com/" target="_blank" rel="noopener">Qur'an Source</a><button class="secondary" onclick="saveBookmark('Durood Sharif','Durood aur dua')">⭐ Bookmark</button></div>
     </div>
     <div class="card" style="margin-top:12px">
-      <div class="symbol">ЁЯУ┐</div><h3>Ganjul Arsh</h3>
-      <p>Yeh dua ka naam hai, Qur'an ki Surah nahi. Iska matn mukhtalif nuskho mein farq ho sakta hai; isliye yahan bina tasdeeq ke poora matn nahi diya gaya.</p>
-      <div class="btnrow"><a class="button" href="https://www.google.com/search?q=Ganjul+Arsh+dua+verified+text" target="_blank" rel="noopener">Matn dhoondhein</a><button class="secondary" onclick="saveBookmark('Ganjul Arsh','Dua')">тШЖ Bookmark</button></div>
+      <div class="symbol">🤲</div><h3>Ganjul Arsh</h3>
+      <p>Yeh ahem dua hai jo kasrat se padhi jaati hai.</p>
+      <div class="btnrow"><button class="secondary" onclick="saveBookmark('Ganjul Arsh','Dua')">⭐ Bookmark</button></div>
     </div>
-    <p class="note">Aap apne bharosemand kitaab/nuskhe ka text bhej dein, to use app mein sahi tarah format karne mein madad ki ja sakti hai.</p>
   </section>
 
   <section class="page" id="tasbeeh">
@@ -83,7 +82,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
     <div class="card">
       <div class="field"><label for="zikr">Zikr select karein</label><select id="zikr"><option>SubhanAllah</option><option>Alhamdulillah</option><option>Allahu Akbar</option><option>Astaghfirullah</option><option>Durood Sharif</option></select></div>
       <div class="big-number" id="count">0</div>
-      <button class="tasbeeh-btn" onclick="countUp()">ЁЯУ┐<br><span id="tapText">Tap</span></button>
+      <button class="tasbeeh-btn" onclick="countUp()">TAP<br><span id="tapText" style="font-size:13px;">Counter</span></button>
       <div class="btnrow" style="justify-content:center"><button class="secondary" onclick="resetCount()">Reset</button><button class="secondary" onclick="saveCount()">Save count</button></div>
       <p class="note" id="savedCountText" style="text-align:center">Saved total: 0</p>
     </div>
@@ -97,45 +96,44 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
   <section class="page" id="settings">
     <h2 id="settingsTitle">Settings</h2>
     <div class="card">
-      <div class="field"><label for="language">App language / ркПрккркирлА ркнрк╛рк╖рк╛</label>
+      <div class="field"><label for="language">App language / भाषा / ભાષા</label>
         <select id="language" onchange="changeLanguage()">
-          <option value="hi">рд╣рд┐рдиреНрджреА</option><option value="gu">ркЧрлБркЬрк░рк╛ркдрлА</option><option value="en">English</option><option value="ur">╪з╪▒╪п┘И</option>
+          <option value="hi">हिन्दी</option><option value="gu">ગુજરાતી</option><option value="en">English</option><option value="ur">اردو</option>
         </select>
       </div>
-      <div class="field"><label>Display</label><button class="secondary" onclick="toggleDark()">ЁЯМЩ Dark / Light mode</button></div>
-      <p class="note">Language setting se app ke kuch labels badlenge. Qur'an ka Arabic matn aur translations source website par available options ke mutabiq khulenge.</p>
+      <div class="field"><label>Display</label><button class="secondary" onclick="toggleDark()">🌙 Dark / Light mode</button></div>
     </div>
     <h2>About</h2>
-    <div class="card"><p>Iqbal App тАУ Panj Surah</p><p class="note">Yeh ek simple web app hai. Online audio aur external reading links ke liye internet zaroori hai. Sirf app kholne se saare pages/audio offline save nahi hote.</p></div>
+    <div class="card"><p>Iqbal App - Panj Surah</p><p class="note">Yeh ek simple web app hai. Online audio aur external reading links ke liye internet zaroori hai.</p></div>
   </section>
-  <footer>Made with care тАв Iqbal App тАУ Panj Surah</footer>
+  <footer>Made with care • Iqbal App - Panj Surah</footer>
 </main>
 <nav class="tabs">
-  <button class="tab active" data-page="home" onclick="showPage('home',this)">ЁЯПа<br><span data-hi="Home" data-gu="рк╣рлЛрко" data-en="Home" data-ur="╪╡┘Б╪н█Б ╪з┘И┘Д">Home</span></button>
-  <button class="tab" data-page="duas" onclick="showPage('duas',this)">ЁЯд▓<br><span data-hi="Dua" data-gu="ркжрлБркЖ" data-en="Duas" data-ur="╪п╪╣╪з╪ж█М┌║">Dua</span></button>
-  <button class="tab" data-page="tasbeeh" onclick="showPage('tasbeeh',this)">ЁЯУ┐<br><span data-hi="Tasbeeh" data-gu="ркдрк╕рлНркмрлАрк╣" data-en="Tasbeeh" data-ur="╪к╪│╪и█М╪н">Tasbeeh</span></button>
-  <button class="tab" data-page="bookmarks" onclick="showPage('bookmarks',this)">тШЖ<br><span data-hi="Saved" data-gu="рк╕рк╛ркЪрк╡рлЗрк▓" data-en="Saved" data-ur="┘Е╪н┘Б┘И╪╕">Saved</span></button>
-  <button class="tab" data-page="settings" onclick="showPage('settings',this)">тЪЩя╕П<br><span data-hi="Settings" data-gu="рк╕рлЗркЯрк┐ркВркЧрлНрк╕" data-en="Settings" data-ur="╪к╪▒╪к█М╪и╪з╪к">Settings</span></button>
+  <button class="tab active" data-page="home" onclick="showPage('home',this)">🏠<br><span>Home</span></button>
+  <button class="tab" data-page="duas" onclick="showPage('duas',this)">📖<br><span>Dua</span></button>
+  <button class="tab" data-page="tasbeeh" onclick="showPage('tasbeeh',this)">📿<br><span>Tasbeeh</span></button>
+  <button class="tab" data-page="bookmarks" onclick="showPage('bookmarks',this)">⭐<br><span>Saved</span></button>
+  <button class="tab" data-page="settings" onclick="showPage('settings',this)">⚙️<br><span>Settings</span></button>
 </nav>
 <script>
 const surahs = [
- {name:'Surah Yaseen',arabic:'╪│┘И╪▒╪й ┘К╪│',desc:'36th Surah тАв Arabic reading & recitation',num:'036',symbol:'ЁЯУЦ'},
- {name:'Surah Waqiah',arabic:'╪│┘И╪▒╪й ╪з┘Д┘И╪з┘В╪╣╪й',desc:'56th Surah тАв Arabic reading & recitation',num:'056',symbol:'ЁЯМЩ'},
- {name:'Surah Rahman',arabic:'╪│┘И╪▒╪й ╪з┘Д╪▒╪н┘Е┘Ж',desc:'55th Surah тАв Arabic reading & recitation',num:'055',symbol:'ЁЯМ┐'},
- {name:'Surah Muzammil',arabic:'╪│┘И╪▒╪й ╪з┘Д┘Е╪▓┘Е┘Д',desc:'73rd Surah тАв Arabic reading & recitation',num:'073',symbol:'тЬи'},
- {name:'Surah Al-Mulk',arabic:'╪│┘И╪▒╪й ╪з┘Д┘Е┘Д┘Г',desc:'67th Surah тАв Extra reading option',num:'067',symbol:'тнР'}
+ {name:'Surah Yaseen',arabic:'سورة يس',desc:'36th Surah - Arabic reading & recitation',num:'036',symbol:'📖'},
+ {name:'Surah Waqiah',arabic:'سورة الواقعة',desc:'56th Surah - Arabic reading & recitation',num:'056',symbol:'🌙'},
+ {name:'Surah Rahman',arabic:'سورة الرحمن',desc:'55th Surah - Arabic reading & recitation',num:'055',symbol:'📿'},
+ {name:'Surah Muzammil',arabic:'سورة المزّمّل',desc:'73rd Surah - Arabic reading & recitation',num:'073',symbol:'✨'},
+ {name:'Surah Al-Mulk',arabic:'سورة الملك',desc:'67th Surah - Extra reading option',num:'067',symbol:'⭐'}
 ];
 const duaItems=[
- {name:'Durood Sharif',desc:'Durood-e-Ibrahimi aur dua ka source',symbol:'ЁЯд▓'},
- {name:'Ganjul Arsh',desc:'Dua тАФ QurтАЩan ki Surah nahi; text verify karein',symbol:'ЁЯУ┐'}
+ {name:'Durood Sharif',desc:'Durood-e-Ibrahimi aur dua ka source',symbol:'📿'},
+ {name:'Ganjul Arsh',desc:'Dua - Mubaraka dua text',symbol:'🤲'}
 ];
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function renderCards(){
- document.getElementById('surahGrid').innerHTML=surahs.map(s=>`<article class="card"><div class="symbol">${s.symbol}</div><h3>${s.name}</h3><div style="font-size:21px;color:var(--green);margin:5px 0 8px;direction:rtl">${s.arabic}</div><p>${s.desc}</p><div class="btnrow"><a class="button" href="https://quran.com/${parseInt(s.num,10)}" target="_blank" rel="noopener">Read / ╪к╪▒╪м┘Е╪й</a><a class="button secondary" href="https://server8.mp3quran.net/afs/${s.num}.mp3" target="_blank" rel="noopener">тЦ╢ Audio</a><button class="secondary" onclick="saveBookmark('${s.name}','Surah')">тШЖ</button></div></article>`).join('');
- document.getElementById('duaGrid').innerHTML=duaItems.map(d=>`<article class="card"><div class="symbol">${d.symbol}</div><h3>${d.name}</h3><p>${d.desc}</p><div class="btnrow"><button onclick="showPage('duas',document.querySelector('[data-page=duas]'))">Open</button><button class="secondary" onclick="saveBookmark('${d.name}','Dua')">тШЖ Bookmark</button></div></article>`).join('');
+ document.getElementById('surahGrid').innerHTML=surahs.map(s=>`<article class="card"><div class="symbol">${s.symbol}</div><h3>${s.name}</h3><div style="font-size:20px;color:var(--green);margin:5px 0 8px;direction:rtl;font-family:'Traditional Arabic',serif">${s.arabic}</div><p>${s.desc}</p><div class="btnrow"><a class="button" href="https://quran.com/${parseInt(s.num,10)}" target="_blank" rel="noopener">Read</a><a class="button secondary" href="https://server8.mp3quran.net/afs/${s.num}.mp3" target="_blank" rel="noopener">Audio</a><button class="secondary" onclick="saveBookmark('${s.name}','Surah')">⭐</button></div></article>`).join('');
+ document.getElementById('duaGrid').innerHTML=duaItems.map(d=>`<article class="card"><div class="symbol">${d.symbol}</div><h3>${d.name}</h3><p>${d.desc}</p><div class="btnrow"><button onclick="showPage('duas',document.querySelector('[data-page=duas]'))">Open</button><button class="secondary" onclick="saveBookmark('${d.name}','Dua')">⭐ Bookmark</button></div></article>`).join('');
 }
 function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='bookmarks')renderBookmarks();window.scrollTo(0,0)}
-function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('iam_dark',document.body.classList.contains('dark')?'1':'0');document.getElementById('darkBtn').textContent=document.body.classList.contains('dark')?'тШАя╕П':'ЁЯМЩ'}
+function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('iam_dark',document.body.classList.contains('dark')?'1':'0');document.getElementById('darkBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙'}
 let count=0;let savedTotal=Number(localStorage.getItem('iam_saved_count')||0);
 function countUp(){count++;document.getElementById('count').textContent=count}
 function resetCount(){count=0;document.getElementById('count').textContent=count}
@@ -145,17 +143,9 @@ function saveBookmark(name,type){let b=getBookmarks();if(!b.some(x=>x.name===nam
 function renderBookmarks(){let b=getBookmarks(),el=document.getElementById('bookmarkList');el.innerHTML=b.length?b.map((x,i)=>`<div class="list-item"><div class="row"><div><b>${esc(x.name)}</b><div class="note">${esc(x.type)}</div></div><button class="secondary" onclick="removeBookmark(${i})">Remove</button></div></div>`).join(''):'<div class="empty">Abhi koi bookmark nahi hai.</div>'}
 function removeBookmark(i){let b=getBookmarks();b.splice(i,1);localStorage.setItem('iam_bookmarks',JSON.stringify(b));renderBookmarks()}
 function clearBookmarks(){if(confirm('Saare bookmarks clear karein?')){localStorage.removeItem('iam_bookmarks');renderBookmarks()}}
-const translations={
- hi:{subtitle:'QurтАЩan, Duas aur Tasbeeh тАФ ek jagah',welcome:'Bismillah тАФ apni tilawat aur dua ka safar shuru karein.',surah:'Surah aur Tilawat',dua:'Dua aur Durood',tasbeeh:'Digital Tasbeeh',bookmarks:'Bookmarks',settings:'Settings'},
- gu:{subtitle:'ркХрлБрк░ркЖрки, ркжрлБркЖ ркЕркирлЗ ркдрк╕рлНркмрлАрк╣ тАФ ркПркХ ркЬ ркЬркЧрлНркпрк╛ркП',welcome:'ркмрк┐рк╕рлНркорк┐рк▓рлНрк▓рк╛рк╣ тАФ ркдрк┐рк▓рк╛рк╡ркд ркЕркирлЗ ркжрлБркЖркирлА рк╢рк░рлВркЖркд ркХрк░рлЛ.',surah:'рк╕рлВрк░рк╣ ркЕркирлЗ ркдрк┐рк▓рк╛рк╡ркд',dua:'ркжрлБркЖ ркЕркирлЗ ркжрк░рлВркж',tasbeeh:'ркбрк┐ркЬрк┐ркЯрк▓ ркдрк╕рлНркмрлАрк╣',bookmarks:'ркмрлБркХркорк╛рк░рлНркХрлНрк╕',settings:'рк╕рлЗркЯрк┐ркВркЧрлНрк╕'},
- en:{subtitle:'QurтАЩan, duas and tasbeeh тАФ in one place',welcome:'Bismillah тАФ begin your recitation and dua journey.',surah:'Surahs & Recitation',dua:'Duas & Durood',tasbeeh:'Digital Tasbeeh',bookmarks:'Bookmarks',settings:'Settings'},
- ur:{subtitle:'┘В╪▒╪в┘Ж╪М ╪п╪╣╪з╪ж█М┌║ ╪з┘И╪▒ ╪к╪│╪и█М╪н тАФ ╪з█М┌й ╪м┌п█Б',welcome:'╪и╪│┘Е ╪з┘Д┘Д█Б тАФ ╪к┘Д╪з┘И╪к ╪з┘И╪▒ ╪п╪╣╪з ┌й╪з ╪в╪║╪з╪▓ ┌й╪▒█М┌║█Ф',surah:'╪│┘И╪▒╪к█М┌║ ╪з┘И╪▒ ╪к┘Д╪з┘И╪к',dua:'╪п╪╣╪з╪ж█М┌║ ╪з┘И╪▒ ╪п╪▒┘И╪п',tasbeeh:'┌И█М╪м█М┘╣┘Д ╪к╪│╪и█М╪н',bookmarks:'┘Е╪н┘Б┘И╪╕',settings:'╪к╪▒╪к█М╪и╪з╪к'}
-};
-function changeLanguage(){let l=document.getElementById('language').value,t=translations[l]||translations.hi;document.documentElement.lang=l;document.getElementById('subtitle').textContent=t.subtitle;document.getElementById('welcomeText').textContent=t.welcome;document.getElementById('surahHeading').textContent=t.surah;document.getElementById('duaHeading').textContent=t.dua;document.getElementById('duasTitle').textContent=t.dua;document.getElementById('tasbeehTitle').textContent=t.tasbeeh;document.getElementById('bookmarksTitle').textContent=t.bookmarks;document.getElementById('settingsTitle').textContent=t.settings;document.querySelectorAll('.tab span').forEach(s=>{let v=s.dataset[l];if(v)s.textContent=v});localStorage.setItem('iam_language',l)}
-if(localStorage.getItem('iam_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='тШАя╕П'}
-document.getElementById('language').value=localStorage.getItem('iam_language')||'hi';
+if(localStorage.getItem('iam_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️'}
 document.getElementById('savedCountText').textContent='Saved total: '+savedTotal;
-renderCards();changeLanguage();renderBookmarks();
+renderCards();renderBookmarks();
 </script>
 </body>
 </html>
