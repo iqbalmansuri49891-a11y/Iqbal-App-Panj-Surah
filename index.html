@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iqbal App - Panj Surah</title>
+    <title>Iqbal App - Complete Surah Collection</title>
     <style>
         :root {
             --primary-color: #1b4d3e;
@@ -124,7 +124,7 @@
         }
 
         .arabic-verse {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-align: right;
             direction: rtl;
             margin-bottom: 10px;
@@ -216,66 +216,83 @@
 <body data-theme="light">
 
     <header>
-        📖 Iqbal App - Panj Surah
+        📖 Iqbal App - Complete Surah Collection
     </header>
 
     <div class="container">
-        <!-- Panj Surah List Tab -->
+        <!-- Surah List Tab -->
         <div id="tab-duas" class="tab-content active">
             
             <div id="surah-list">
-                <div class="card" onclick="openSurah('yaseen', 'Surah Yaseen')">
+                <!-- 36. Surah Yaseen -->
+                <div class="card" onclick="openSurah('yaseen', 'Surah Yaseen (36)', 'يس', '83 AYAHS', 'يس ۝ وَالْقُرْآنِ الْحَكِيمِ', 'Yaseen. By the wise Quran.')">
                     <div class="surah-info">
                         <h3>Surah Yaseen</h3>
-                        <p>Heart of Quran[span_2](start_span)[span_2](end_span)</p>
+                        <p>Heart of Quran</p>
                     </div>
                     <div class="surah-meta">
                         <div class="arabic-name">يس</div>
-                        <div class="ayah-count">83 AYAHS[span_3](start_span)[span_3](end_span)</div>
+                        <div class="ayah-count">36 • 83 AYAHS</div>
                     </div>
                 </div>
 
-                <div class="card" onclick="openSurah('rehman', 'Surah Ar-Rehman')">
+                <!-- 55. Surah Ar-Rahman -->
+                <div class="card" onclick="openSurah('rehman', 'Surah Ar-Rahman (55)', 'الرحمن', '78 AYAHS', 'الرَّحْمَٰنُ ۝ عَلَّمَ الْقُرْآنَ', 'The Most Merciful. Taught the Quran.')">
                     <div class="surah-info">
-                        <h3>Surah Ar-Rehman</h3>
-                        <p>The Most Merciful[span_4](start_span)[span_4](end_span)</p>
+                        <h3>Surah Ar-Rahman</h3>
+                        <p>The Most Merciful</p>
                     </div>
                     <div class="surah-meta">
                         <div class="arabic-name">الرحمن</div>
-                        <div class="ayah-count">78 AYAHS[span_5](start_span)[span_5](end_span)</div>
+                        <div class="ayah-count">55 • 78 AYAHS</div>
                     </div>
                 </div>
 
-                <div class="card" onclick="openSurah('waqiah', 'Surah Al-Waqiah')">
+                <!-- 56. Surah Al-Waqiah -->
+                <div class="card" onclick="openSurah('waqiah', 'Surah Al-Waqiah (56)', 'الواقعة', '96 AYAHS', 'إِذَا وَقَعَتِ الْوَاقِعَةُ', 'When the Inevitable event occurs.')">
                     <div class="surah-info">
                         <h3>Surah Al-Waqiah</h3>
-                        <p>The Inevitable[span_6](start_span)[span_6](end_span)</p>
+                        <p>The Inevitable</p>
                     </div>
                     <div class="surah-meta">
                         <div class="arabic-name">الواقعة</div>
-                        <div class="ayah-count">96 AYAHS[span_7](start_span)[span_7](end_span)</div>
+                        <div class="ayah-count">56 • 96 AYAHS</div>
                     </div>
                 </div>
 
-                <div class="card" onclick="openSurah('mulk', 'Surah Al-Mulk')">
+                <!-- 59. Surah Al-Hashr -->
+                <div class="card" onclick="openSurah('hashr', 'Surah Al-Hashr (59)', 'الحشر', '24 AYAHS', 'لَوْ أَنزَلْنَا هَٰذَا الْقُرْآنَ عَلَى جَبَلٍ لَّرَأَيْتَهُ خَاشِعًا مُّتَصَدِّعًا مِّنْ خَشْيَةِ اللَّهِ', 'Had We sent down this Quran on a mountain, you would surely have seen it humbled out of fear of Allah.')">
+                    <div class="surah-info">
+                        <h3>Surah Al-Hashr</h3>
+                        <p>The Banishment</p>
+                    </div>
+                    <div class="surah-meta">
+                        <div class="arabic-name">الحشر</div>
+                        <div class="ayah-count">59 • 24 AYAHS</div>
+                    </div>
+                </div>
+
+                <!-- 67. Surah Al-Mulk -->
+                <div class="card" onclick="openSurah('mulk', 'Surah Al-Mulk (67)', 'الملك', '30 AYAHS', 'تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ', 'Blessed is He in whose hand is dominion, and He is over all things competent.')">
                     <div class="surah-info">
                         <h3>Surah Al-Mulk</h3>
-                        <p>The Sovereignty[span_8](start_span)[span_8](end_span)</p>
+                        <p>The Sovereignty</p>
                     </div>
                     <div class="surah-meta">
                         <div class="arabic-name">الملك</div>
-                        <div class="ayah-count">30 AYAHS[span_9](start_span)[span_9](end_span)</div>
+                        <div class="ayah-count">67 • 30 AYAHS</div>
                     </div>
                 </div>
 
-                <div class="card" onclick="openSurah('muzammil', 'Surah Al-Muzammil')">
+                <!-- 73. Surah Al-Muzammil -->
+                <div class="card" onclick="openSurah('muzammil', 'Surah Al-Muzammil (73)', 'المزمّل', '20 AYAHS', 'يَا أَيُّهَا الْمُزَّمَّلُ ۝ قُمِ اللَّيْلَ إِلَّا قَلِيلًا', 'O you who wraps yourself [in clothing]! Stand [in prayer] by night, except a little.')">
                     <div class="surah-info">
                         <h3>Surah Al-Muzammil</h3>
-                        <p>The Enshrouded One[span_10](start_span)[span_10](end_span)</p>
+                        <p>The Enshrouded One</p>
                     </div>
                     <div class="surah-meta">
                         <div class="arabic-name">المزمّل</div>
-                        <div class="ayah-count">20 AYAHS[span_11](start_span)[span_11](end_span)</div>
+                        <div class="ayah-count">73 • 20 AYAHS</div>
                     </div>
                 </div>
             </div>
@@ -287,7 +304,7 @@
                 
                 <div class="verse-card">
                     <div class="arabic-verse">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-                    <div class="verse-translation">In the name of Allah, the Entirely Merciful, the Especially Merciful.[span_12](start_span)[span_12](end_span)</div>
+                    <div class="verse-translation">In the name of Allah, the Entirely Merciful, the Especially Merciful.</div>
                 </div>
 
                 <div class="verse-card">
@@ -301,7 +318,7 @@
                         <source id="audio-source" src="" type="audio/mpeg">
                         Aapka browser audio support nahi karta.
                     </audio>
-                    <div class="reciter-name">Mishary Alafasy[span_13](start_span)[span_13](end_span)</div>
+                    <div class="reciter-name">Mishary Alafasy</div>
                 </div>
             </div>
 
@@ -311,7 +328,7 @@
         <div id="tab-home" class="tab-content">
             <div class="card" style="display:block;">
                 <h3 style="color:var(--primary-color); margin-bottom:8px;">Welcome to Iqbal App</h3>
-                <p>Explore Panj Surah with accurate Arabic fonts, translations, and audio playback.</p>
+                <p>Explore all requested Surahs with accurate Arabic text, translations, and audio playback.</p>
             </div>
         </div>
 
@@ -350,12 +367,12 @@
 
     <!-- Bottom Navigation Bar -->
     <nav>
-        <a class="nav-item" onclick="switchTab('home', this)"><span>🏠</span>Home[span_14](start_span)[span_14](end_span)</a>
-        <a class="nav-item active" onclick="switchTab('duas', this)"><span>📖</span>Panj Surah[span_15](start_span)[span_15](end_span)</a>
-        <a class="nav-item" onclick="switchTab('tasbeeh', this)"><span>📿</span>Tasbeeh[span_16](start_span)[span_16](end_span)</a>
-        <a class="nav-item" onclick="switchTab('saved', this)"><span>🔖</span>Saved[span_17](start_span)[span_17](end_span)</a>
-        <a class="nav-item" onclick="switchTab('tools', this)"><span>🛠️</span>Tools[span_18](start_span)[span_18](end_span)</a>
-        <a class="nav-item" onclick="switchTab('settings', this)"><span>⚙️</span>Settings[span_19](start_span)[span_19](end_span)</a>
+        <a class="nav-item" onclick="switchTab('home', this)"><span>🏠</span>Home</a>
+        <a class="nav-item active" onclick="switchTab('duas', this)"><span>📖</span>Surahs</a>
+        <a class="nav-item" onclick="switchTab('tasbeeh', this)"><span>📿</span>Tasbeeh</a>
+        <a class="nav-item" onclick="switchTab('saved', this)"><span>🔖</span>Saved</a>
+        <a class="nav-item" onclick="switchTab('tools', this)"><span>🛠️</span>Tools</a>
+        <a class="nav-item" onclick="switchTab('settings', this)"><span>⚙️</span>Settings</a>
     </nav>
 
     <script>
@@ -366,35 +383,18 @@
             element.classList.add('active');
         }
 
-        function openSurah(surahKey, surahName) {
+        function openSurah(surahKey, surahName, arabicName, ayahCount, verseText, verseTrans) {
             document.getElementById('surah-list').style.display = 'none';
             document.getElementById('surah-detail').classList.add('active');
             document.getElementById('detail-title').innerText = surahName;
+            
+            document.getElementById('verse-text').innerText = verseText;
+            document.getElementById('verse-trans').innerText = verseTrans;
 
             const audioElem = document.getElementById('audio-element');
             const audioSource = document.getElementById('audio-source');
-
-            if(surahKey === 'mulk') {
-                document.getElementById('verse-text').innerText = 'تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ';
-                document.getElementById('verse-trans').innerText = 'Blessed is He in whose hand is dominion, and He is over all things competent[span_20](start_span)[span_20](end_span).';
-                audioSource.src = 'audio/surah-mulk.mp3';
-            } else if(surahKey === 'rehman') {
-                document.getElementById('verse-text').innerText = 'الرَّحْمَٰنُ ۝ عَلَّمَ الْقُرْآنَ';
-                document.getElementById('verse-trans').innerText = 'The Most Merciful[span_21](start_span)[span_21](end_span). Taught the Quran[span_22](start_span)[span_22](end_span).';
-                audioSource.src = 'audio/surah-rehman.mp3';
-            } else if(surahKey === 'waqiah') {
-                document.getElementById('verse-text').innerText = 'إِذَا وَقَعَتِ الْوَاقِعَةُ';
-                document.getElementById('verse-trans').innerText = 'When the Inevitable event occurs.';
-                audioSource.src = 'audio/surah-waqiah.mp3';
-            } else if(surahKey === 'muzammil') {
-                document.getElementById('verse-text').innerText = 'يَا أَيُّهَا الْمُزَّمَّلُ';
-                document.getElementById('verse-trans').innerText = 'O you who wraps yourself [in clothing]!';
-                audioSource.src = 'audio/surah-muzammil.mp3';
-            } else {
-                document.getElementById('verse-text').innerText = 'يس ۝ وَالْقُرْآنِ الْحَكِيمِ';
-                document.getElementById('verse-trans').innerText = 'Yaseen. By the wise Quran.';
-                audioSource.src = 'audio/surah-yaseen.mp3';
-            }
+            
+            audioSource.src = `audio/surah-${surahKey}.mp3`;
             audioElem.load();
         }
 
