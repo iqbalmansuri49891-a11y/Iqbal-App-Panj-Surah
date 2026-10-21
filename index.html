@@ -60,46 +60,122 @@
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .surah-info h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+
+        .surah-info p {
+            font-size: 0.85rem;
+            color: var(--nav-text);
+        }
+
+        .surah-meta {
+            text-align: right;
+        }
+
+        .arabic-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-color);
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .ayah-count {
+            font-size: 0.75rem;
+            color: var(--nav-text);
+        }
+
+        /* Detail View / Audio Player */
+        .detail-view {
+            display: none;
+        }
+
+        .detail-view.active {
+            display: block;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .verse-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
         }
 
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .arabic-text {
-            font-size: 1.4rem;
+        .arabic-verse {
+            font-size: 1.5rem;
             text-align: right;
             direction: rtl;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 2.2;
-            font-family: 'Traditional Arabic', 'Amiri', serif;
+            font-family: 'Traditional Arabic', serif;
         }
 
-        .translation {
+        .verse-translation {
             font-size: 0.95rem;
-            line-height: 1.6;
             color: var(--text-color);
             border-top: 1px dashed var(--border-color);
             padding-top: 8px;
         }
 
-        /* Audio Player Styling */
-        .audio-player {
-            margin-top: 12px;
-            padding-top: 8px;
-            border-top: 1px solid var(--border-color);
+        /* Floating Audio Controller Bar */
+        .audio-bar {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 750px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 999;
         }
 
-        .audio-player audio {
-            width: 100%;
-            height: 35px;
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 5px;
+        }
+
+        .audio-controls button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .reciter-name {
+            font-size: 0.75rem;
+            color: var(--nav-text);
         }
 
         /* Bottom Navigation */
@@ -149,129 +225,98 @@
 <body data-theme="light">
 
     <header>
-        📖 Iqbal App - Panj Surah & Duas
+        📖 Iqbal App - Panj Surah
     </header>
 
     <div class="container">
-        <!-- Duas & Panj Surah Tab (Default Active) -->
+        <!-- Panj Surah List Tab -->
         <div id="tab-duas" class="tab-content active">
             
-            <!-- 1. Surah Yaseen -->
-            <div class="card">
-                <div class="card-title">सूरह यासीन (Surah Yaseen)</div>
-                <div class="arabic-text">
-                    يس ۝ وَالْقُرْآنِ الْحَكِيمِ ۝ إِنَّكَ لَمِنَ الْمُرْسَلِينَ
+            <div id="surah-list">
+                <!-- Surah Yaseen -->
+                <div class="card" onclick="openSurah('yaseen', 'Surah Yaseen')">
+                    <div class="surah-info">
+                        <h3>Surah Yaseen</h3>
+                        <p>Heart of Quran[span_3](start_span)[span_3](end_span)</p>
+                    </div>
+                    <div class="surah-meta">
+                        <div class="arabic-name">يس</div>
+                        <div class="ayah-count">83 AYAHS[span_4](start_span)[span_4](end_span)</div>
+                    </div>
                 </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> यासीन। कसम है हिकमत वाले कुरआन की। बेशक आप पैगंबरों में से हैं।
+
+                <!-- Surah Ar-Rehman -->
+                <div class="card" onclick="openSurah('rehman', 'Surah Ar-Rehman')">
+                    <div class="surah-info">
+                        <h3>Surah Ar-Rehman</h3>
+                        <p>The Most Merciful[span_5](start_span)[span_5](end_span)</p>
+                    </div>
+                    <div class="surah-meta">
+                        <div class="arabic-name">الرحمن</div>
+                        <div class="ayah-count">78 AYAHS[span_6](start_span)[span_6](end_span)</div>
+                    </div>
                 </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/surah-yaseen.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
+
+                <!-- Surah Al-Waqiah -->
+                <div class="card" onclick="openSurah('waqiah', 'Surah Al-Waqiah')">
+                    <div class="surah-info">
+                        <h3>Surah Al-Waqiah</h3>
+                        <p>The Inevitable[span_7](start_span)[span_7](end_span)</p>
+                    </div>
+                    <div class="surah-meta">
+                        <div class="arabic-name">الواقعة</div>
+                        <div class="ayah-count">96 AYAHS[span_8](start_span)[span_8](end_span)</div>
+                    </div>
+                </div>
+
+                <!-- Surah Al-Mulk -->
+                <div class="card" onclick="openSurah('mulk', 'Surah Al-Mulk')">
+                    <div class="surah-info">
+                        <h3>Surah Al-Mulk</h3>
+                        <p>The Sovereignty[span_9](start_span)[span_9](end_span)</p>
+                    </div>
+                    <div class="surah-meta">
+                        <div class="arabic-name">الملك</div>
+                        <div class="ayah-count">30 AYAHS[span_10](start_span)[span_10](end_span)</div>
+                    </div>
+                </div>
+
+                <!-- Surah Al-Muzammil -->
+                <div class="card" onclick="openSurah('muzammil', 'Surah Al-Muzammil')">
+                    <div class="surah-info">
+                        <h3>Surah Al-Muzammil</h3>
+                        <p>The Enshrouded One[span_11](start_span)[span_11](end_span)</p>
+                    </div>
+                    <div class="surah-meta">
+                        <div class="arabic-name">المزمّل</div>
+                        <div class="ayah-count">20 AYAHS[span_12](start_span)[span_12](end_span)</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 2. Surah Ar-Rahman -->
-            <div class="card">
-                <div class="card-title">सूरह अर-रहमान (Surah Ar-Rahman)</div>
-                <div class="arabic-text">
-                    الرَّحْمَنُ ۝ عَلَّمَ الْقُرْآنَ ۝ خَلَقَ الْإِنسَانَ ۝ عَلَّمَهُ الْبَيَانَ
+            <!-- Surah Detail View -->
+            <div id="surah-detail" class="detail-view">
+                <button class="back-btn" onclick="closeSurah()">← Back to List</button>
+                <h2 id="detail-title" style="color: var(--primary-color); margin-bottom: 15px;"></h2>
+                
+                <div class="verse-card">
+                    <div class="arabic-verse">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                    <div class="verse-translation">In the name of Allah, the Entirely Merciful, the Especially Merciful.[span_13](start_span)[span_13](end_span)</div>
                 </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> (खुदा जो) रहमान है। उसी ने कुरआन सिखाया। उसी ने इंसान को पैदा किया। उसी ने उसे बोलना सिखाया।
-                </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/surah-رحمن.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
-                </div>
-            </div>
 
-            <!-- 3. Surah Al-Waqiah -->
-            <div class="card">
-                <div class="card-title">सूरह अल-वाकिया (Surah Al-Waqiah)</div>
-                <div class="arabic-text">
-                    إِذَا وَقَعَتِ الْوَاقِعَةُ ۝ لَيْسَ لِوَقْعَتِهَا كَاذِبَةٌ
+                <div class="verse-card">
+                    <div class="arabic-verse" id="verse-text">Loading verses...</div>
+                    <div class="verse-translation" id="verse-trans">Translation text here...</div>
                 </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> जब होने वाली (कियामत) वाक़े हो जाएगी। उस के वाक़े होने में कोई झूठ नहीं है।
-                </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/surah-waqiah.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
-                </div>
-            </div>
 
-            <!-- 4. Surah Al-Mulk -->
-            <div class="card">
-                <div class="card-title">सूरह अल-मुल्क (Surah Al-Mulk)</div>
-                <div class="arabic-text">
-                    تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ
-                </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> बहुत बरकत वाला है वह जिसके हाथ में बादशाहत है और वह हर चीज़ पर पूरी कुदरत रखने वाला है।
-                </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/surah-mulk.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
-                </div>
-            </div>
-
-            <!-- 5. Surah Al-Muzammil -->
-            <div class="card">
-                <div class="card-title">सूरह अल-मुज़म्मिल (Surah Al-Muzammil)</div>
-                <div class="arabic-text">
-                    يَا أَيُّهَا الْمُزَّمَّلُ ۝ قُمِ اللَّيْلَ إِلَّا قَلِيلًا
-                </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> ऐ चादर ओढ़ने वाले! रात को (इबादत के लिए) खड़े हो जाओ, मगर थोड़ी रात (छोड़ कर)।
-                </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/surah-muzammil.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
-                </div>
-            </div>
-
-            <!-- Ayat-ul-Kursi -->
-            <div class="card">
-                <div class="card-title">आयतुल कुर्सी (Ayat-ul-Kursi)</div>
-                <div class="arabic-text">
-                    اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ
-                </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> अल्लाह वह माबूद है जिसके सिवा कोई इबादत के लाइक नहीं, जो ज़िंदा है और पूरी कायनात को थामे हुए है।
-                </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/ayatul-kursi.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
-                </div>
-            </div>
-
-            <!-- Dua-e-Ganjul Arsh -->
-            <div class="card">
-                <div class="card-title">दुआ-ए-गंजुल अर्श (Mukammal Dua-e-Ganjul Arsh)</div>
-                <div class="arabic-text">
-                    لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْمَلِكِ الْقُدُّوسِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْعَزِيزِ الْحَكِيمِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الرَّؤُوفِ الرَّحِيمِ، لَا إِلَهَ إِلَّا اللَّهُ سُبْحَانَ الْغَفُورِ الرَّحِيمِ
-                </div>
-                <div class="translation">
-                    <strong>तर्जुमा:</strong> अल्लाह के सिवा कोई माबूद नहीं, पाक है बादशाह जो पाकीज़ा है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो इज्जत और हिकमत वाला है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो बहुत मेहरबान और रहम वाला है। अल्लाह के सिवा कोई माबूद नहीं, पाक है जो बख्शने वाला और रहम करने वाला है।
-                </div>
-                <div class="audio-player">
-                    <audio controls>
-                        <source src="audio/ganjul-arsh.mp3" type="audio/mpeg">
-                        Aapka browser audio element support nahi karta.
-                    </audio>
+                <!-- Audio Controller Bar (Like Screenshot) -->
+                <div class="audio-bar">
+                    <div class="audio-controls">
+                        <button>⏮</button>
+                        <button onclick="togglePlay()">⏸</button>
+                        <button>⏭</button>
+                    </div>
+                    <div class="reciter-name">Mishary Alafasy[span_14](start_span)[span_14](end_span)</div>
                 </div>
             </div>
 
@@ -279,89 +324,93 @@
 
         <!-- Home Tab -->
         <div id="tab-home" class="tab-content">
-            <div class="card">
-                <div class="card-title">Welcome to Iqbal App</div>
-                <p>Yahan aapko Panj Surah, Duas aur Tasbeeh ki sahulat milegi. Neeche diye gaye navigation se aap Duas aur baki sections par ja sakte hain.</p>
+            <div class="card" style="display:block;">
+                <h3 style="color:var(--primary-color); margin-bottom:8px;">Welcome to Iqbal App</h3>
+                <p>Explore Panj Surah with accurate Arabic fonts, translations, and audio playback.</p>
             </div>
         </div>
 
         <!-- Tasbeeh Tab -->
         <div id="tab-tasbeeh" class="tab-content">
-            <div class="card">
-                <div class="card-title">Digital Tasbeeh</div>
-                <p>Digital Tasbeeh counter jald hi yahan active hoga.</p>
+            <div class="card" style="display:block;">
+                <h3 style="color:var(--primary-color); margin-bottom:8px;">Digital Tasbeeh</h3>
+                <p>Tasbeeh counter feature coming soon.</p>
             </div>
         </div>
 
-        <!-- Saved/Bookmarks Tab -->
+        <!-- Saved Tab -->
         <div id="tab-saved" class="tab-content">
-            <div class="card">
-                <div class="card-title">Bookmarks</div>
-                <p>Aapki saved ki gayi Duas yahan dikhengi.</p>
+            <div class="card" style="display:block;">
+                <h3 style="color:var(--primary-color); margin-bottom:8px;">Bookmarks</h3>
+                <p>Your saved ayahs and surahs will appear here.</p>
             </div>
         </div>
 
         <!-- Tools Tab -->
         <div id="tab-tools" class="tab-content">
-            <div class="card">
-                <div class="card-title">Islamic Tools</div>
-                <p>Qibla direction aur Islamic utilities yahan available hongi.</p>
+            <div class="card" style="display:block;">
+                <h3 style="color:var(--primary-color); margin-bottom:8px;">Islamic Tools</h3>
+                <p>Qibla direction and utilities.</p>
             </div>
         </div>
 
         <!-- Settings Tab -->
         <div id="tab-settings" class="tab-content">
-            <div class="card">
-                <div class="card-title">Settings</div>
-                <button onclick="toggleTheme()" style="padding: 10px 18px; cursor: pointer; background: var(--primary-color); color: white; border: none; border-radius: 5px;">Dark/Light Mode Toggle</button>
+            <div class="card" style="display:block;">
+                <h3 style="color:var(--primary-color); margin-bottom:8px;">Smart Settings</h3>
+                <button onclick="toggleTheme()" style="padding: 8px 15px; cursor: pointer; background: var(--primary-color); color: white; border: none; border-radius: 5px;">Toggle Dark/Light Mode</button>
             </div>
         </div>
     </div>
 
     <!-- Bottom Navigation Bar -->
     <nav>
-        <a class="nav-item" onclick="switchTab('home', this)">
-            <span>🏠</span>Home
-        </a>
-        <a class="nav-item active" onclick="switchTab('duas', this)">
-            <span>📖</span>Duas
-        </a>
-        <a class="nav-item" onclick="switchTab('tasbeeh', this)">
-            <span>📿</span>Tasbeeh
-        </a>
-        <a class="nav-item" onclick="switchTab('saved', this)">
-            <span>🔖</span>Saved
-        </a>
-        <a class="nav-item" onclick="switchTab('tools', this)">
-            <span>🛠️</span>Tools
-        </a>
-        <a class="nav-item" onclick="switchTab('settings', this)">
-            <span>⚙️</span>Settings
-        </a>
+        <a class="nav-item" onclick="switchTab('home', this)"><span>🏠</span>Home</a>
+        <a class="nav-item active" onclick="switchTab('duas', this)"><span>📖</span>Panj Surah</a>
+        <a class="nav-item" onclick="switchTab('tasbeeh', this)"><span>📿</span>Tasbeeh</a>
+        <a class="nav-item" onclick="switchTab('saved', this)"><span>🔖</span>Saved</a>
+        <a class="nav-item" onclick="switchTab('tools', this)"><span>🛠️</span>Tools</a>
+        <a class="nav-item" onclick="switchTab('settings', this)"><span>⚙️</span>Settings</a>
     </nav>
 
     <script>
         function switchTab(tabName, element) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Remove active class from all nav items
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => item.classList.remove('active'));
-
-            // Show target tab and set active nav
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.getElementById('tab-' + tabName).classList.add('active');
             element.classList.add('active');
         }
 
+        function openSurah(surahKey, surahName) {
+            document.getElementById('surah-list').style.display = 'none';
+            document.getElementById('surah-detail').classList.add('active');
+            document.getElementById('detail-title').innerText = surahName;
+
+            // Sample data mapping based on screenshots
+            if(surahKey === 'mulk') {
+                document.getElementById('verse-text').innerText = 'تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ';
+                document.getElementById('verse-trans').innerText = 'Blessed is He in whose hand is dominion, and He is over all things competent[span_15](start_span)[span_15](end_span).';
+            } else if(surahKey === 'rehman') {
+                document.getElementById('verse-text').innerText = 'الرَّحْمَٰنُ ۝ عَلَّمَ الْقُرْآنَ';
+                document.getElementById('verse-trans').innerText = 'The Most Merciful[span_16](start_span)[span_16](end_span). Taught the Quran[span_17](start_span)[span_17](end_span).';
+            } else {
+                document.getElementById('verse-text').innerText = 'يس ۝ وَالْقُرْآنِ الْحَكِيمِ';
+                document.getElementById('verse-trans').innerText = 'Yaseen. By the wise Quran.';
+            }
+        }
+
+        function closeSurah() {
+            document.getElementById('surah-detail').classList.remove('active');
+            document.getElementById('surah-list').style.display = 'block';
+        }
+
         function toggleTheme() {
             const body = document.body;
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-            }
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        }
+
+        function togglePlay() {
+            alert('Audio playback toggled (Mishary Alafasy)[span_18](start_span)[span_18](end_span).');
         }
     </script>
 </body>
