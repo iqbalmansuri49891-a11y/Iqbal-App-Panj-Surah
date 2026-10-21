@@ -4,187 +4,418 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#087f5b">
-<title>Iqbal App - Panj Surah</title>
+<title>Iqbal App - Panj Surah & Duas</title>
+
 <style>
-:root{--green:#087f5b;--green2:#0a996c;--bg:#f3f6f5;--card:#fff;--text:#1e2925;--muted:#66756f;--line:#e2e9e5;--gold:#f5c451}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:82px;transition:.2s}
-body.dark{--bg:#101714;--card:#1a2420;--text:#eef5f0;--muted:#b0beb7;--line:#34423b;--green:#0b7655;--green2:#11966b}
-header{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;padding:22px 17px 18px;border-radius:0 0 24px 24px;box-shadow:0 5px 18px rgba(0,0,0,0.05)}
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-h1{font-size:23px;margin:0 0 5px}header p{margin:0;font-size:13px;opacity:.92}
-.icon-btn{border:1px solid rgba(255,255,255,0.4);background:rgba(255,255,255,0.1);color:white;border-radius:12px;padding:10px;font-size:18px;cursor:pointer}
-.wrap{max-width:760px;margin:auto;padding:15px}
-.welcome{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:15px 0}
-.welcome .arabic{font-size:24px;line-height:1.9;text-align:center;color:var(--green);direction:rtl;font-family:'Traditional Arabic', serif;}
-h2{font-size:19px;margin:20px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0;box-shadow:0 3px 10px rgba(0,0,0,0.03)}
-.card .symbol{font-size:24px;margin-bottom:8px}
-.card h3{font-size:16px;margin:0 0 5px}
-.card p{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 11px}
-.btnrow{display:flex;flex-wrap:wrap;gap:7px}
-button,.button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9px 11px;background:var(--green);color:#fff;text-decoration:none;display:inline-block;font-size:13px}
-button.secondary,.button.secondary{background:var(--bg);color:var(--text);border:1px solid var(--line)}
-button.gold{background:var(--gold);color:#3b2b00}
-.note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:12px}
-
-/* Toast Notification Styling */
-#toast {
-    position: fixed;
-    bottom: 85px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: #1e2925;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 13px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 10000;
+:root{
+ --green:#087f5b;
+ --dark:#07513d;
+ --bg:#f3f7f4;
+ --card:#fff;
+ --text:#203027;
+ --border:#dce7df;
 }
-#toast.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ padding-bottom:80px;
 }
-
-.tabs{position:fixed;z-index:10;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:var(--card);border-top:1px solid var(--line);padding:8px 3px calc(8px + env(safe-area-inset-bottom))}
-.tab{background:transparent;color:var(--muted);padding:7px 5px;flex:1;font-size:11px;border-radius:10px;cursor:pointer;border:none;}
-.tab.active{color:#fff;background:var(--green)}
-.page{display:none}.page.active{display:block}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-select,input{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:15px}
-.field{margin:12px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-.big-number{font-size:44px;font-weight:bold;text-align:center;margin:18px 0}
-.tasbeeh-btn{width:150px;height:150px;border-radius:50%;font-size:20px;display:block;margin:15px auto;background:linear-gradient(145deg,var(--green2),var(--green));box-shadow:0 7px 0 #04543d;color:#fff}
-.list-item{padding:13px 0;border-bottom:1px solid var(--line)}
-.empty{text-align:center;color:var(--muted);padding:24px 10px}
-footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
-@media(max-width:370px){.grid{grid-template-columns:1fr}h1{font-size:20px}}
+header{
+ background:linear-gradient(135deg,#087f5b,#064b37);
+ color:white;
+ padding:22px 15px;
+ text-align:center;
+}
+header h1{margin:0 0 8px;font-size:24px}
+header p{margin:0;font-size:14px}
+.container{max-width:850px;margin:auto;padding:12px}
+.card{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:15px;
+ margin:12px 0;
+ box-shadow:0 3px 10px #00000008;
+}
+h2{font-size:21px}
+h3{margin:0 0 8px}
+p{line-height:1.7}
+.muted{color:#65736a;font-size:13px}
+button,select,input{font:inherit}
+button{
+ border:0;
+ border-radius:9px;
+ background:var(--green);
+ color:white;
+ padding:11px 14px;
+ cursor:pointer;
+}
+button.secondary{background:#e5f3eb;color:#07513d}
+input{
+ width:100%;
+ padding:12px;
+ border:1px solid var(--border);
+ border-radius:9px;
+}
+.row{display:flex;align-items:center;gap:12px}
+.grow{flex:1}
+.badge{
+ display:inline-block;
+ background:#e4f4eb;
+ color:#07513d;
+ border-radius:20px;
+ padding:4px 9px;
+ font-size:12px;
+}
+.arabic{
+ direction:rtl;
+ text-align:right;
+ font-family:"Noto Naskh Arabic","Amiri",serif;
+ font-size:27px;
+ line-height:2;
+ margin:12px 0;
+}
+.translation{
+ background:#f0f7f2;
+ padding:12px;
+ border-radius:9px;
+ line-height:1.8;
+}
+.ayah{padding:12px 0;border-bottom:1px solid var(--border)}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.page{display:none}
+.page.active{display:block}
+.bottom{
+ position:fixed;
+ bottom:0;left:0;right:0;
+ display:flex;
+ background:white;
+ border-top:1px solid var(--border);
+ padding:7px 2px;
+ z-index:10;
+}
+.bottom button{
+ flex:1;
+ background:transparent;
+ color:#65736a;
+ padding:8px 2px;
+ font-size:11px;
+}
+.bottom button.active{color:var(--green);font-weight:bold}
+.notice{
+ background:#fff6df;
+ border:1px solid #efdfad;
+ border-radius:10px;
+ padding:12px;
+ font-size:13px;
+ line-height:1.7;
+}
+#count{font-size:60px;font-weight:bold;margin:20px}
+footer{text-align:center;font-size:12px;color:#65736a;padding:20px}
+body.dark{
+ --bg:#111a14;
+ --card:#1e2b22;
+ --text:#eef5ef;
+ --border:#34483a;
+}
+body.dark .translation{background:#26382b}
+body.dark .bottom{background:#1e2b22}
+body.dark input,body.dark select{background:#1e2b22;color:white}
 </style>
 </head>
+
 <body>
+
 <header>
-  <div class="header-row">
-    <div><h1 id="appTitle">Iqbal App - Panj Surah</h1><p id="subtitle">Qur'an, Duas aur Tasbeeh - ek jagah</p></div>
-    <button class="icon-btn" id="darkBtn" aria-label="Dark mode" onclick="toggleDark()">🌙</button>
-  </div>
+ <h1>🕌 Iqbal App</h1>
+ <p>Panj Surah • Duas • Islamic Guide</p>
 </header>
-<main class="wrap">
-  <section class="page active" id="home">
-    <div class="welcome">
-      <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-      <p style="text-align:center;margin:8px 0 0;color:var(--muted)" id="welcomeText">Bismillah - apni tilawat aur dua ka safar shuru karein.</p>
-    </div>
-    <h2 id="surahHeading">Surah aur Tilawat</h2>
-    <div class="grid" id="surahGrid"></div>
-    <h2 id="duaHeading">Dua aur Durood</h2>
-    <div class="grid" id="duaGrid"></div>
-    <p class="note" id="accuracyNote">Zaroori: Is app mein Surah ka poora Arabic matn saaf suthra aur audio ke sath available hai. Tilawat aur tarjume ke liye aap direct padh sakte hain.</p>
-  </section>
 
-  <section class="page" id="duas">
-    <h2 id="duasTitle">Dua aur Durood</h2>
-    <div class="card">
-      <div class="symbol">📿</div><h3>Durood Sharif (Durood-e-Ibrahimi)</h3>
-      <p>Namaz mein padha jane wala mashhoor durood.</p>
-      <div class="btnrow"><a class="button" href="https://quran.com/" target="_blank" rel="noopener">Qur'an Source</a><button class="secondary" onclick="saveBookmark('Durood Sharif','Durood aur dua')">⭐ Bookmark</button></div>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <div class="symbol">🤲</div><h3>Ganjul Arsh</h3>
-      <p>Yeh ahem dua hai jo kasrat se padhi jaati hai.</p>
-      <div class="btnrow"><button class="secondary" onclick="saveBookmark('Ganjul Arsh','Dua')">⭐ Bookmark</button></div>
-    </div>
-  </section>
+<main class="container">
 
-  <section class="page" id="tasbeeh">
-    <h2 id="tasbeehTitle">Digital Tasbeeh</h2>
-    <div class="card">
-      <div class="field"><label for="zikr">Zikr select karein</label><select id="zikr"><option>SubhanAllah</option><option>Alhamdulillah</option><option>Allahu Akbar</option><option>Astaghfirullah</option><option>Durood Sharif</option></select></div>
-      <div class="big-number" id="count">0</div>
-      <button class="tasbeeh-btn" onclick="countUp()">TAP<br><span id="tapText" style="font-size:13px;">Counter</span></button>
-      <div class="btnrow" style="justify-content:center"><button class="secondary" onclick="resetCount()">Reset</button><button class="secondary" onclick="saveCount()">Save count</button></div>
-      <p class="note" id="savedCountText" style="text-align:center">Saved total: 0</p>
-    </div>
-  </section>
+<section id="home" class="page active">
+ <div class="card">
+  <h2>📖 कुरआन शरीफ़</h2>
+  <p class="muted">पूरी सूरह, अरबी पाठ, हिंदी अर्थ और ऑडियो के लिए सूरह खोलें।</p>
+  <input id="search" placeholder="सूरह खोजें..." oninput="renderSurahs()">
+ </div>
+ <div id="surahList"></div>
+</section>
 
-  <section class="page" id="bookmarks">
-    <div class="row"><h2 id="bookmarksTitle">Bookmarks</h2><button class="secondary" onclick="clearBookmarks()">Clear</button></div>
-    <div id="bookmarkList" class="card"><div class="empty">Abhi koi bookmark nahi hai.</div></div>
-  </section>
+<section id="duas" class="page">
+ <h2>🤲 रोज़ाना की दुआएँ</h2>
+ <div id="duaList"></div>
+</section>
 
-  <section class="page" id="settings">
-    <h2 id="settingsTitle">Settings</h2>
-    <div class="card">
-      <div class="field"><label for="language">App language / भाषा / ભાષા</label>
-        <select id="language" onchange="changeLanguage()">
-          <option value="hi">हिन्दी</option><option value="gu">ગુજરાતી</option><option value="en">English</option><option value="ur">اردو</option>
-        </select>
-      </div>
-      <div class="field"><label>Display</label><button class="secondary" onclick="toggleDark()">🌙 Dark / Light mode</button></div>
-    </div>
-    <h2>About</h2>
-    <div class="card"><p>Iqbal App - Panj Surah</p><p class="note">Yeh ek simple web app hai. Online audio aur external reading links ke liye internet zaroori hai.</p></div>
-  </section>
-  <footer>Made with care • Iqbal App - Panj Surah</footer>
+<section id="islam" class="page">
+ <h2>🌙 इस्लामी मौक़े और फ़ज़ीलत</h2>
+
+ <div class="card">
+  <h3>🌙 शब-ए-बरात</h3>
+  <p>इस रात के बारे में उलमा की राय और कुछ रिवायतों की व्याख्या में मतभेद हैं। किसी खास दुआ को अनिवार्य या सहीह हदीस से साबित कहने से पहले उसकी प्रमाणिकता जाँचें। अल्लाह से मग़फ़िरत, रहमत और हिदायत माँग सकते हैं।</p>
+  <div class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+  <div class="translation">हिंदी अर्थ: ऐ हमारे रब! हमें दुनिया में भलाई दे, आख़िरत में भलाई दे और हमें आग के अज़ाब से बचा।</div>
+ </div>
+
+ <div class="card">
+  <h3>🌙 रमज़ान शरीफ़</h3>
+  <p>रमज़ान में रोज़ा, क़ुरआन की तिलावत, सदक़ा, दुआ और अच्छे अख़लाक़ की विशेष अहमियत है।</p>
+  <div class="arabic">ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ</div>
+  <div class="translation">हिंदी अर्थ: प्यास दूर हुई, रगें तर हो गईं और इंशाअल्लाह अज्र साबित हो गया।</div>
+ </div>
+
+ <div class="card">
+  <h3>🕌 तरावीह की नमाज़</h3>
+  <p>तरावीह रमज़ान की रातों में पढ़ी जाने वाली नमाज़ है। इसकी रकअतों और कुछ अमली तरीक़ों में फ़िक़्ही मतभेद मिलते हैं। अपने स्थानीय इमाम से सही तरीक़ा सीखें।</p>
+  <p>तरावीह के बाद पढ़ी जाने वाली कुछ मशहूर दुआओं को अनिवार्य या सहीह हदीस से साबित बताने से पहले उनकी प्रमाणिकता की जाँच करें।</p>
+ </div>
+
+ <div class="card">
+  <h3>🌙 मुहर्रम और आशूरा</h3>
+  <p>मुहर्रम इस्लामी साल के सम्मानित महीनों में से है। आशूरा के रोज़े की फ़ज़ीलत सहीह हदीसों में बयान हुई है। किसी विशेष “दुआ-ए-आशूरा” को सहीह हदीस से साबित कहने से पहले उसकी सनद की जाँच करें।</p>
+ </div>
+
+ <div class="card">
+  <h3>🌙 ईद-उल-फ़ित्र और ईद-उल-अज़हा</h3>
+  <p>ईद के मौक़े पर नमाज़, तकबीर, शुक्र, रिश्तेदारों से अच्छा व्यवहार और ज़रूरतमंदों की मदद की अहमियत है।</p>
+ </div>
+</section>
+
+<section id="tasbeeh" class="page">
+ <div class="card" style="text-align:center">
+  <h2>📿 डिजिटल तस्बीह</h2>
+  <select id="target" onchange="setTarget()">
+   <option value="33">33 बार</option>
+   <option value="99">99 बार</option>
+   <option value="100">100 बार</option>
+   <option value="0">बिना लक्ष्य</option>
+  </select>
+  <div id="count">0</div>
+  <p id="targetText"></p>
+  <button onclick="addCount()" style="padding:18px 35px;font-size:20px">📿 +1</button>
+  <div class="controls" style="justify-content:center">
+   <button class="secondary" onclick="resetCount()">रीसेट</button>
+  </div>
+ </div>
+</section>
+
+<section id="settings" class="page">
+ <div class="card">
+  <h2>⚙️ सेटिंग्स</h2>
+  <button onclick="toggleDark()">🌙 डार्क / लाइट मोड</button>
+  <p class="muted">सूरह का पाठ, हिंदी अनुवाद और ऑडियो लोड करने के लिए इंटरनेट आवश्यक है।</p>
+ </div>
+</section>
+
+<footer>अल्लाह हमें क़ुरआन समझने और उस पर अमल करने की तौफ़ीक़ दे। आमीन। 🤲</footer>
 </main>
 
-<!-- Custom Toast Popup -->
-<div id="toast"></div>
-
-<nav class="tabs">
-  <button class="tab active" data-page="home" onclick="showPage('home',this)">🏠<br><span>Home</span></button>
-  <button class="tab" data-page="duas" onclick="showPage('duas',this)">📖<br><span>Dua</span></button>
-  <button class="tab" data-page="tasbeeh" onclick="showPage('tasbeeh',this)">📿<br><span>Tasbeeh</span></button>
-  <button class="tab" data-page="bookmarks" onclick="showPage('bookmarks',this)">⭐<br><span>Saved</span></button>
-  <button class="tab" data-page="settings" onclick="showPage('settings',this)">⚙️<br><span>Settings</span></button>
+<nav class="bottom">
+ <button class="active" onclick="showPage('home',this)">📖<br>क़ुरआन</button>
+ <button onclick="showPage('duas',this)">🤲<br>दुआएँ</button>
+ <button onclick="showPage('islam',this)">🌙<br>मौक़े</button>
+ <button onclick="showPage('tasbeeh',this)">📿<br>तस्बीह</button>
+ <button onclick="showPage('settings',this)">⚙️<br>सेटिंग्स</button>
 </nav>
 
 <script>
-const surahs = [
- {name:'Surah Yaseen',arabic:'سورة يس',desc:'36th Surah - Arabic reading & recitation',num:'036',symbol:'📖'},
- {name:'Surah Waqiah',arabic:'سورة الواقعة',desc:'56th Surah - Arabic reading & recitation',num:'056',symbol:'🌙'},
- {name:'Surah Rahman',arabic:'سورة الرحمن',desc:'55th Surah - Arabic reading & recitation',num:'055',symbol:'📿'},
- {name:'Surah Muzammil',arabic:'سورة المزّمّل',desc:'73rd Surah - Arabic reading & recitation',num:'073',symbol:'✨'},
- {name:'Surah Al-Mulk',arabic:'سورة الملك',desc:'67th Surah - Extra reading option',num:'067',symbol:'⭐'}
-];
-const duaItems=[
- {name:'Durood Sharif',desc:'Durood-e-Ibrahimi aur dua ka source',symbol:'📿'},
- {name:'Ganjul Arsh',desc:'Dua - Mubaraka dua text',symbol:'🤲'}
+const surahs=[
+ {n:1,name:"सूरह अल-फ़ातिहा",en:"Al-Fatiha"},
+ {n:36,name:"सूरह यासीन",en:"Ya-Sin"},
+ {n:56,name:"सूरह वाक़िआ",en:"Al-Waqiah"},
+ {n:55,name:"सूरह रहमान",en:"Ar-Rahman"},
+ {n:73,name:"सूरह मुज़म्मिल",en:"Al-Muzzammil"},
+ {n:67,name:"सूरह मुल्क",en:"Al-Mulk"}
 ];
 
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 2000);
+let tasbeeh=Number(localStorage.getItem("iqbalCount")||0);
+let target=Number(localStorage.getItem("iqbalTarget")||33);
+let currentAudio=null;
+let audioQueue=[];
+
+function renderSurahs(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=document.getElementById("surahList");
+ list.innerHTML="";
+ surahs.filter(s=>(s.name+" "+s.en).toLowerCase().includes(q)).forEach(s=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+   <div class="row">
+    <div class="grow">
+     <span class="badge">Surah ${s.n}</span>
+     <h3 style="margin-top:8px">${s.name}</h3>
+     <div class="muted">${s.en}</div>
+    </div>
+    <button onclick="loadSurah(${s.n})">खोलें</button>
+   </div>
+   <div id="surah-${s.n}"></div>`;
+  list.appendChild(card);
+ });
 }
 
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function renderCards(){
- document.getElementById('surahGrid').innerHTML=surahs.map(s=>`<article class="card"><div class="symbol">${s.symbol}</div><h3>${s.name}</h3><div style="font-size:20px;color:var(--green);margin:5px 0 8px;direction:rtl;font-family:'Traditional Arabic',serif">${s.arabic}</div><p>${s.desc}</p><div class="btnrow"><a class="button" href="https://quran.com/${parseInt(s.num,10)}" target="_blank" rel="noopener">Read</a><a class="button secondary" href="https://server8.mp3quran.net/afs/${s.num}.mp3" target="_blank" rel="noopener">Audio</a><button class="secondary" onclick="saveBookmark('${s.name}','Surah')">⭐</button></div></article>`).join('');
- document.getElementById('duaGrid').innerHTML=duaItems.map(d=>`<article class="card"><div class="symbol">${d.symbol}</div><h3>${d.name}</h3><p>${d.desc}</p><div class="btnrow"><button onclick="showPage('duas',document.querySelector('[data-page=duas]'))">Open</button><button class="secondary" onclick="saveBookmark('${d.name}','Dua')">⭐ Bookmark</button></div></article>`).join('');
+async function loadSurah(n){
+ const box=document.getElementById("surah-"+n);
+ box.innerHTML="<p>सूरह लोड हो रही है... कृपया इंतज़ार करें।</p>";
+ try{
+  const results=await Promise.all([
+   fetch(`https://api.alquran.cloud/v1/surah/${n}/quran-uthmani`),
+   fetch(`https://api.alquran.cloud/v1/surah/${n}/hi.hindi`),
+   fetch(`https://api.alquran.cloud/v1/surah/${n}/ar.alafasy`)
+  ]);
+  if(results.some(r=>!r.ok)) throw new Error("Network error");
+  const [a,h,au]=await Promise.all(results.map(r=>r.json()));
+  if(a.code!=="200"||h.code!=="200"||au.code!=="200") throw new Error("API error");
+  audioQueue=au.data.ayahs.map(x=>x.audio);
+  const ayahs=a.data.ayahs;
+  const translations=h.data.ayahs;
+  box.innerHTML=`
+   <div class="controls">
+    <button onclick="playAll()">▶️ पूरी सूरह सुनें</button>
+    <button class="secondary" onclick="stopAudio()">⏹️ रोकें</button>
+   </div>
+   <p class="muted">ऑडियो ऑनलाइन चलेगा। हर आयत अलग से भी सुनी जा सकती है।</p>
+   <div id="ayah-list-${n}"></div>`;
+  const area=document.getElementById("ayah-list-"+n);
+  ayahs.forEach((ay,i)=>{
+   const div=document.createElement("div");
+   div.className="ayah";
+   const translation=translations[i]?.text||"अनुवाद उपलब्ध नहीं।";
+   div.innerHTML=`
+    <div class="arabic">${escapeHTML(ay.text)} <span style="font-size:16px;color:#087f5b">۞ ${ay.numberInSurah}</span></div>
+    <div class="translation"><b>हिंदी अर्थ:</b><br>${escapeHTML(translation)}</div>
+    <div class="controls"><button class="secondary" onclick="playAyah(${i})">🔊 आयत सुनें</button></div>`;
+   area.appendChild(div);
+  });
+ }catch(e){
+  box.innerHTML="<p>सूरह लोड नहीं हो सकी। इंटरनेट जाँचकर दोबारा कोशिश करें।</p><button onclick='loadSurah("+n+")'>दोबारा कोशिश</button>";
+ }
 }
-function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='bookmarks')renderBookmarks();window.scrollTo(0,0)}
-function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('iam_dark',document.body.classList.contains('dark')?'1':'0');document.getElementById('darkBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙'}
-let count=0;let savedTotal=Number(localStorage.getItem('iam_saved_count')||0);
-function countUp(){count++;document.getElementById('count').textContent=count}
-function resetCount(){count=0;document.getElementById('count').textContent=count}
-function saveCount(){savedTotal+=count;localStorage.setItem('iam_saved_count',savedTotal);document.getElementById('savedCountText').textContent='Saved total: '+savedTotal;resetCount()}
-function getBookmarks(){try{return JSON.parse(localStorage.getItem('iam_bookmarks')||'[]')}catch(e){return []}}
-function saveBookmark(name,type){let b=getBookmarks();if(!b.some(x=>x.name===name)){b.push({name,type});localStorage.setItem('iam_bookmarks',JSON.stringify(b))}showToast(name+' bookmarked');renderBookmarks()}
-function renderBookmarks(){let b=getBookmarks(),el=document.getElementById('bookmarkList');el.innerHTML=b.length?b.map((x,i)=>`<div class="list-item"><div class="row"><div><b>${esc(x.name)}</b><div class="note">${esc(x.type)}</div></div><button class="secondary" onclick="removeBookmark(${i})">Remove</button></div></div>`).join(''):'<div class="empty">Abhi koi bookmark nahi hai.</div>'}
-function removeBookmark(i){let b=getBookmarks();b.splice(i,1);localStorage.setItem('iam_bookmarks',JSON.stringify(b));renderBookmarks();showToast('Bookmark removed')}
-function clearBookmarks(){if(confirm('Saare bookmarks clear karein?')){localStorage.removeItem('iam_bookmarks');renderBookmarks();showToast('All bookmarks cleared')}}
-if(localStorage.getItem('iam_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️'}
-document.getElementById('savedCountText').textContent='Saved total: '+savedTotal;
-renderCards();renderBookmarks();
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function stopAudio(){
+ if(currentAudio){currentAudio.pause();currentAudio=null}
+}
+function playAyah(i){
+ if(!audioQueue[i])return;
+ if(currentAudio)currentAudio.pause();
+ currentAudio=new Audio(audioQueue[i]);
+ currentAudio.play().catch(()=>alert("ऑडियो चलाने के लिए फिर से बटन दबाएँ।"));
+}
+function playAll(){
+ if(!audioQueue.length){alert("पहले सूरह खोलें।");return}
+ let i=0;
+ function next(){
+  if(i>=audioQueue.length)return;
+  if(currentAudio)currentAudio.pause();
+  currentAudio=new Audio(audioQueue[i++]);
+  currentAudio.onended=next;
+  currentAudio.play().catch(()=>alert("ऑडियो चलाने के लिए बटन दबाएँ।"));
+ }
+ next();
+}
+
+const duas=[
+ {
+  title:"दुरूद शरीफ़ — दुरूद इब्राहीम",
+  ar:"اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.",
+  hi:"ऐ अल्लाह! मुहम्मद ﷺ और उनकी आल पर रहमत और बरकत नाज़िल फ़रमा, जैसे तूने इब्राहीम और उनकी आल पर रहमत और बरकत नाज़िल फ़रमाई।"
+ },
+ {
+  title:"सोने की दुआ",
+  ar:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+  hi:"ऐ अल्लाह! तेरे ही नाम के साथ मैं मरता और ज़िंदा होता हूँ।"
+ },
+ {
+  title:"जागने की दुआ",
+  ar:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+  hi:"सारी तारीफ़ अल्लाह के लिए है, जिसने हमें नींद के बाद ज़िंदा किया और उसी की ओर उठकर जाना है।"
+ },
+ {
+  title:"दुआ-ए-सफ़र",
+  ar:"سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ",
+  hi:"पाक है वह जिसने इस सवारी को हमारे क़ाबू में किया, वरना हम इसे क़ाबू में नहीं कर सकते थे। और हमें अपने रब की ओर लौटना है।"
+ },
+ {
+  title:"खाने से पहले",
+  ar:"بِسْمِ اللَّهِ",
+  hi:"अल्लाह के नाम से।"
+ },
+ {
+  title:"दुनिया और आख़िरत की भलाई",
+  ar:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+  hi:"ऐ हमारे रब! हमें दुनिया और आख़िरत में भलाई दे और आग के अज़ाब से बचा।"
+ }
+];
+
+function renderDuas(){
+ const box=document.getElementById("duaList");
+ duas.forEach((d,i)=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+   <h3>${d.title}</h3>
+   <div class="arabic">${d.ar}</div>
+   <div class="translation"><b>हिंदी अर्थ:</b><br>${d.hi}</div>
+   <div class="controls"><button class="secondary" onclick="speakDua(${i})">🔊 सुनने की कोशिश</button></div>
+   <p class="muted">यह बटन मोबाइल की Arabic text-to-speech सुविधा पर निर्भर है। सही तिलावत के लिए प्रमाणित ऑडियो सुनें।</p>`;
+  box.appendChild(card);
+ });
+}
+function speakDua(i){
+ if(!("speechSynthesis" in window)){alert("इस ब्राउज़र में आवाज़ की सुविधा उपलब्ध नहीं है।");return}
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(duas[i].ar);
+ u.lang="ar-SA";
+ speechSynthesis.speak(u);
+}
+function showPage(id,btn){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ window.scrollTo(0,0);
+}
+function updateCount(){
+ document.getElementById("count").textContent=tasbeeh;
+ document.getElementById("target").value=target;
+ document.getElementById("targetText").textContent=
+  target?(tasbeeh>=target?"अल्हम्दुलिल्लाह! लक्ष्य पूरा हुआ।":"लक्ष्य: "+target+" · बाकी: "+(target-tasbeeh)):"कोई लक्ष्य नहीं";
+}
+function addCount(){
+ tasbeeh++;
+ localStorage.setItem("iqbalCount",tasbeeh);
+ updateCount();
+ if(target&&tasbeeh===target)alert("अल्हम्दुलिल्लाह! लक्ष्य पूरा हुआ।");
+}
+function resetCount(){
+ if(confirm("क्या तस्बीह काउंट रीसेट करें?")){
+  tasbeeh=0;
+  localStorage.setItem("iqbalCount",tasbeeh);
+  updateCount();
+ }
+}
+function setTarget(){
+ target=Number(document.getElementById("target").value);
+ localStorage.setItem("iqbalTarget",target);
+ updateCount();
+}
+function toggleDark(){
+ document.body.classList.toggle("dark");
+ localStorage.setItem("iqbalDark",document.body.classList.contains("dark")?"1":"0");
+}
+
+renderSurahs();
+renderDuas();
+updateCount();
+if(localStorage.getItem("iqbalDark")==="1")document.body.classList.add("dark");
 </script>
 </body>
 </html>
