@@ -3,343 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087f5b">
 <title>Iqbal App – Panj Surah & Duas</title>
 
 <style>
 :root {
-  --green: #087f5b;
-  --bg: #f4f7f4;
-  --card: #ffffff;
-  --text: #1d2924;
-  --muted: #66736d;
-  --line: #e1e9e3;
+  --green:#087f5b;
+  --dark:#056344;
+  --bg:#f4f7f4;
+  --card:#fff;
+  --text:#1d2924;
+  --muted:#66736d;
+  --line:#e1e9e3;
 }
-
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  padding-bottom:80px;
 }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, "Noto Sans Devanagari", sans-serif;
-  padding-bottom: 76px;
+header{
+  background:linear-gradient(135deg,#056344,#0b9669);
+  color:white;padding:22px 16px 18px;
+  border-radius:0 0 22px 22px;
 }
-
-header {
-  background: linear-gradient(135deg, #056344, #0b9669);
-  color: white;
-  padding: 22px 16px 18px;
-  border-radius: 0 0 22px 22px;
+header h1{font-size:22px;margin:0 0 7px}
+header p{margin:0;font-size:14px;line-height:1.7}
+main{max-width:760px;margin:auto;padding:14px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px}
+.tab{
+  border:0;background:#e3eee7;color:#155c42;
+  padding:11px 14px;border-radius:12px;
+  white-space:nowrap;font-weight:bold
 }
-
-header h1 {
-  font-size: 23px;
-  margin: 0 0 7px;
+.tab.active{background:var(--green);color:white}
+.panel{display:none}
+.panel.active{display:block}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:16px;padding:15px;margin-bottom:12px;
+  box-shadow:0 3px 12px #143d2510
 }
-
-header p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
+.card h2,.card h3{margin:0 0 10px}
+button{cursor:pointer}
+.primary,.secondary{
+  padding:10px 13px;border-radius:10px;font-weight:bold;
+  margin:3px 0
 }
-
-main {
-  max-width: 760px;
-  margin: auto;
-  padding: 14px;
+.primary{border:0;background:var(--green);color:white}
+.secondary{border:1px solid #cbded2;background:#f7fbf8;color:#155c42}
+.muted{color:var(--muted);font-size:13px;line-height:1.7}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.surah-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.surah-btn{
+  background:white;border:1px solid #cbded2;border-radius:13px;
+  padding:13px;text-align:left;color:var(--text);font-size:15px
 }
-
-.tabs {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  margin-bottom: 14px;
+.surah-btn b{display:block;color:var(--green);margin-bottom:5px}
+.surah-btn small{color:var(--muted)}
+.arabic,.dua-ar{
+  font-family:"Noto Naskh Arabic","Amiri",serif;
+  font-size:27px;line-height:2.1;text-align:right;direction:rtl;
+  margin:10px 0
 }
-
-.tab {
-  border: 0;
-  background: #e3eee7;
-  color: #155c42;
-  padding: 11px 14px;
-  border-radius: 12px;
-  white-space: nowrap;
-  font-weight: bold;
+.translation{font-size:15px;line-height:1.9;margin:8px 0}
+.ayah{border-bottom:1px solid var(--line);padding:15px 0}
+.ayah:last-child{border-bottom:0}
+.number{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#e3f2e8;color:#116344;border-radius:50%;
+  width:30px;height:30px;font-size:13px;font-weight:bold
 }
-
-.tab.active {
-  background: var(--green);
-  color: white;
+.status{
+  padding:12px;background:#eef7f0;border-radius:10px;
+  color:#155c42;margin:10px 0;font-size:14px;line-height:1.7
 }
-
-.panel {
-  display: none;
+audio{width:100%;margin-top:10px}
+.occasion{border-left:4px solid var(--green)}
+.hide{display:none!important}
+.bottom{
+  position:fixed;bottom:0;left:0;right:0;background:white;
+  border-top:1px solid var(--line);display:flex;
+  justify-content:space-around;padding:8px 3px;
+  padding-bottom:calc(8px + env(safe-area-inset-bottom));z-index:5
 }
-
-.panel.active {
-  display: block;
+.bottom button{
+  border:0;background:none;color:#607168;font-size:12px;padding:5px
 }
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 15px;
-  margin-bottom: 12px;
-  box-shadow: 0 3px 12px #143d2510;
+.bottom button span{display:block;font-size:20px;margin-bottom:3px}
+.bottom button.active{color:var(--green);font-weight:bold}
+.prayer-step{padding:10px 0;border-bottom:1px solid var(--line);line-height:1.8}
+.prayer-step:last-child{border:0}
+.tag{
+  display:inline-block;padding:4px 8px;border-radius:8px;
+  background:#e3f2e8;color:#116344;font-size:12px;margin:3px 0
 }
-
-.card h2,
-.card h3 {
-  margin: 0 0 10px;
-}
-
-.muted {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.surah-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.surah-btn {
-  background: white;
-  border: 1px solid #cbded2;
-  border-radius: 13px;
-  padding: 13px;
-  text-align: left;
-  color: var(--text);
-  font-size: 15px;
-}
-
-.surah-btn b {
-  display: block;
-  color: var(--green);
-  margin-bottom: 5px;
-}
-
-.surah-btn small {
-  color: var(--muted);
-}
-
-button {
-  cursor: pointer;
-}
-
-.primary {
-  border: 0;
-  background: var(--green);
-  color: white;
-  padding: 11px 14px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-.secondary {
-  border: 1px solid #cbded2;
-  background: #f7fbf8;
-  color: #155c42;
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-.row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.ayah {
-  border-bottom: 1px solid var(--line);
-  padding: 16px 0;
-}
-
-.ayah:last-child {
-  border-bottom: 0;
-}
-
-.arabic {
-  font-family: "Noto Naskh Arabic", "Amiri", serif;
-  font-size: 28px;
-  line-height: 2.05;
-  text-align: right;
-  direction: rtl;
-  margin: 8px 0 10px;
-}
-
-.translation {
-  font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 10px;
-}
-
-.number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #e3f2e8;
-  color: #116344;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.status {
-  padding: 12px;
-  background: #eef7f0;
-  border-radius: 10px;
-  color: #155c42;
-  margin: 10px 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.dua-ar {
-  font-family: "Noto Naskh Arabic", "Amiri", serif;
-  font-size: 25px;
-  line-height: 2;
-  text-align: right;
-  direction: rtl;
-}
-
-.occasion {
-  border-left: 4px solid var(--green);
-}
-
-.hide {
-  display: none !important;
-}
-
-audio {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-around;
-  padding: 9px 3px calc(9px + env(safe-area-inset-bottom));
-  z-index: 5;
-}
-
-.bottom button {
-  border: 0;
-  background: none;
-  color: #607168;
-  font-size: 12px;
-  padding: 5px;
-}
-
-.bottom button span {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 3px;
-}
-
-.bottom button.active {
-  color: var(--green);
-  font-weight: bold;
-}
-
-@media(max-width: 420px) {
-  .arabic {
-    font-size: 25px;
-  }
-
-  .card {
-    padding: 13px;
-  }
-
-  .surah-btn {
-    padding: 11px 9px;
-  }
+@media(max-width:420px){
+ .arabic,.dua-ar{font-size:24px}
+ .card{padding:13px}
+ .surah-btn{padding:11px 9px}
 }
 </style>
 </head>
 
 <body>
-
 <header>
   <h1>🌙 Iqbal App – Panj Surah & Duas</h1>
   <p>क़ुरआन पढ़ें, सुनें और दुआएँ याद करें।</p>
 </header>
 
 <main>
-
 <div class="tabs">
-  <button class="tab active" data-panel="quran">📖 सूरह</button>
+  <button class="tab active" data-panel="quran">📖 क़ुरआन</button>
   <button class="tab" data-panel="duas">🤲 दुआएँ</button>
-  <button class="tab" data-panel="occasions">🌙 इस्लामी मौके</button>
+  <button class="tab" data-panel="durood">📿 दुरूद</button>
+  <button class="tab" data-panel="namaz">🕌 नमाज़</button>
+  <button class="tab" data-panel="occasions">🌙 मौके</button>
   <button class="tab" data-panel="tasbeeh">📿 तस्बीह</button>
 </div>
 
-<!-- QURAN SECTION -->
-
+<!-- QURAN -->
 <section id="quran" class="panel active">
-
   <div class="card">
-    <h2>📖 सूरह चुनें</h2>
-
-    <p class="muted">
-      किसी सूरह को चुनें। हर आयत के साथ अलग ऑडियो और हिंदी अनुवाद मिलेगा।
-    </p>
-
+    <h2>📖 क़ुरआन और सूरह</h2>
+    <p class="muted">सूरह चुनें। अरबी आयतें, हिंदी अनुवाद और अलग-अलग आयतों का ऑडियो उपलब्ध है। इंटरनेट ज़रूरी है।</p>
     <div class="surah-grid" id="surahList"></div>
   </div>
 
-  <div id="surahView" class="card hide">
-
-    <h2 id="surahTitle">सूरह</h2>
-
-    <div class="row">
-      <button id="playAudio" class="primary">
-        ▶ पूरी सूरह सुनें
-      </button>
-
-      <button id="stopAudio" class="secondary">
-        ■ ऑडियो रोकें
-      </button>
-    </div>
-
-    <audio id="surahAudio" controls preload="none"></audio>
-
-    <p class="muted">
-      हर आयत के नीचे दिए गए बटन से उसकी अलग तिलावत सुनें।
-      ऑडियो के लिए इंटरनेट चाहिए।
+  <div class="card">
+    <h2>آية الكرسي — आयतुल कुर्सी</h2>
+    <span class="tag">सूरह अल-बक़रा 2:255</span>
+    <div class="arabic" id="kursiArabic">आयत लोड हो रही है…</div>
+    <h3>आसान हिंदी उच्चारण</h3>
+    <p class="translation" id="kursiPronunciation">
+      अल्लाहु ला इलाहा इल्ला हुवल हय्युल क़य्यूम...
     </p>
+    <h3>हिंदी अर्थ</h3>
+    <p class="translation" id="kursiTranslation">
+      आयत का अर्थ इंटरनेट से लोड हो रहा है…
+    </p>
+    <audio id="kursiAudio" controls preload="none"></audio>
+    <p class="muted">उच्चारण सीखने के लिए अरबी पाठ और किसी योग्य शिक्षक की तिलावत से मिलान करें।</p>
+  </div>
 
+  <div id="surahView" class="card hide">
+    <h2 id="surahTitle">सूरह</h2>
+    <div class="row">
+      <button id="playAudio" class="primary">▶ पूरी सूरह सुनें</button>
+      <button id="stopAudio" class="secondary">■ ऑडियो रोकें</button>
+    </div>
+    <audio id="surahAudio" controls preload="none"></audio>
+    <p class="muted">हर आयत के नीचे उसका अलग ऑडियो बटन है।</p>
     <div id="ayahs"></div>
-
   </div>
-
-  <div id="loadStatus" class="status">
-    सूरह चुनने पर आयतें यहाँ दिखाई देंगी।
-  </div>
-
+  <div id="loadStatus" class="status">सूरह चुनने पर आयतें यहाँ दिखाई देंगी।</div>
 </section>
 
-<!-- DUAS SECTION -->
-
+<!-- DUAS -->
 <section id="duas" class="panel">
-
   <div class="card">
     <h2>🤲 दरूद-ए-इब्राहीम</h2>
-
     <div class="dua-ar">
       اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ،
       كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ،
@@ -348,365 +171,340 @@ audio {
       كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ،
       إِنَّكَ حَمِيدٌ مَجِيدٌ
     </div>
-
-    <p class="muted">
-      अर्थ: ऐ अल्लाह! मुहम्मद ﷺ और उनकी आल पर रहमत और बरकत नाज़िल फ़रमा।
-    </p>
+    <p class="translation">हिंदी उच्चारण: अल्लाहुम्म सल्लि अला मुहम्मदिन व अला आलि मुहम्मद…</p>
+    <p class="muted">अर्थ: ऐ अल्लाह! मुहम्मद ﷺ और उनकी आल पर रहमत और बरकत नाज़िल फ़रमा।</p>
   </div>
 
   <div class="card">
     <h3>सोने से पहले</h3>
     <div class="dua-ar">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</div>
+    <p class="translation">उच्चारण: बिस्मिकल्लाहुम्मा अमूतु व अहया।</p>
     <p>अर्थ: ऐ अल्लाह! तेरे ही नाम के साथ मैं मरता और जीता हूँ।</p>
   </div>
 
   <div class="card">
     <h3>नींद से उठने पर</h3>
-    <div class="dua-ar">
-      الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ
-    </div>
-    <p>अर्थ: सब तारीफ़ अल्लाह के लिए है जिसने हमें नींद के बाद ज़िंदगी दी, और उसी की ओर लौटना है।</p>
+    <div class="dua-ar">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</div>
+    <p class="translation">उच्चारण: अल्हम्दु लिल्लाहिल्लज़ी अहयाना बअदा मा अमातना व इलैहिन नुशूर।</p>
+    <p>अर्थ: सब तारीफ़ अल्लाह के लिए है जिसने हमें नींद के बाद ज़िंदगी दी; उसी की ओर लौटना है।</p>
   </div>
 
   <div class="card">
     <h3>सफ़र की दुआ</h3>
-    <div class="dua-ar">
-      سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ
-      ۝ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ
-    </div>
-    <p>अर्थ: पाक है वह जिसने इसे हमारे क़ाबू में किया, वरना हम इसे क़ाबू में करने वाले न थे; और हमें अपने रब की तरफ़ लौटना है।</p>
+    <div class="dua-ar">سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ</div>
+    <p>अर्थ: पाक है वह जिसने इसे हमारे क़ाबू में किया। हम अपने रब की ओर लौटने वाले हैं।</p>
   </div>
 
   <div class="card">
     <h3>खाना शुरू करने से पहले</h3>
     <div class="dua-ar">بِسْمِ اللَّهِ</div>
-    <p>अर्थ: अल्लाह के नाम से।</p>
+    <p>उच्चारण: बिस्मिल्लाह। अर्थ: अल्लाह के नाम से।</p>
   </div>
 
   <div class="card">
     <h3>खाना खाने के बाद</h3>
-    <div class="dua-ar">
-      الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ
-    </div>
-    <p>अर्थ: अल्लाह का शुक्र है जिसने मुझे यह खाना दिया और मेरी ताक़त के बिना रोज़ी दी।</p>
+    <div class="dua-ar">الْحَمْدُ لِلَّهِ</div>
+    <p>उच्चारण: अल्हम्दु लिल्लाह। अर्थ: सब तारीफ़ अल्लाह के लिए है।</p>
   </div>
 
   <div class="card">
-    <h3>दुनिया और आख़िरत की भलाई की दुआ</h3>
-    <div class="dua-ar">
-      رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ
-    </div>
+    <h3>दुनिया और आख़िरत की भलाई</h3>
+    <div class="dua-ar">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+    <p class="translation">उच्चारण: रब्बना आतिना फ़िद्दुन्या हसनतन व फ़िल आख़िरति हसनतन व क़िना अज़ाबन्नार।</p>
     <p>अर्थ: ऐ हमारे रब! हमें दुनिया और आख़िरत में भलाई दे और आग के अज़ाब से बचा।</p>
   </div>
 
+  <div class="card">
+    <h3>📜 दुआ-ए-गंजुल अर्श और लौहे कुरानी</h3>
+    <p>इन दोनों के सही और पूरे पाठ की पुष्टि होने तक इन्हें शामिल नहीं किया गया है।</p>
+  </div>
 </section>
 
-<!-- ISLAMIC OCCASIONS -->
+<!-- 20 DUROOD -->
+<section id="durood" class="panel">
+  <div class="card">
+    <h2>📿 सलवात और दुरूद</h2>
+    <p class="muted">नीचे सलवात के 20 अभ्यास-रूप दिए गए हैं। इनमें कुछ अलग-अलग प्रचलित छोटे रूप और दुआई वाक्य हैं; इन्हें 20 अलग प्रमाणित हदीसों या 20 अलग ऐतिहासिक दुरूद के रूप में न समझें।</p>
+  </div>
+  <div id="duroodList"></div>
+</section>
 
+<!-- JA'FARI PRAYER GUIDE -->
+<section id="namaz" class="panel">
+  <div class="card">
+    <h2>🕌 शिया इमामिया जाफ़री नमाज़</h2>
+    <p class="muted">यह शुरुआती शैक्षिक मार्गदर्शिका है। कुछ विवरण मरजा-ए-तक़लीद के अनुसार बदल सकते हैं। अमल से पहले अपने मरजा के रिसाले या भरोसेमंद आलिम से पुष्टि करें।</p>
+  </div>
+
+  <div class="card">
+    <h3>1. वुज़ू का सामान्य तरीका</h3>
+    <div class="prayer-step"><b>नियत:</b> दिल में अल्लाह की क़ुर्बत के लिए वुज़ू करने का इरादा करें। बोलकर नियत करना ज़रूरी नहीं।</div>
+    <div class="prayer-step"><b>चेहरा धोना:</b> माथे पर बाल उगने की जगह से ठोड़ी तक, और चौड़ाई में सामान्यतः बीच की उँगली और अंगूठे के बीच के फैलाव के बराबर हिस्से को ऊपर से नीचे धोएँ।</div>
+    <div class="prayer-step"><b>दायाँ हाथ:</b> कोहनी से उँगलियों तक ऊपर से नीचे धोएँ।</div>
+    <div class="prayer-step"><b>बायाँ हाथ:</b> इसी तरह कोहनी से उँगलियों तक धोएँ।</div>
+    <div class="prayer-step"><b>सिर का मसह:</b> बचे हुए वुज़ू के पानी से सिर के आगे वाले हिस्से पर मसह करें।</div>
+    <div class="prayer-step"><b>पैरों का मसह:</b> उसी वुज़ू की नमी से दाएँ और फिर बाएँ पैर के ऊपर उँगलियों से टखने तक मसह करें।</div>
+    <p class="muted">जाफ़री वुज़ू में पैर नहीं धोए जाते, बल्कि मसह किया जाता है। क्रम, पानी और बाधा से जुड़े नियम अपने मरजा से सीखें।</p>
+  </div>
+
+  <div class="card">
+    <h3>2. रोज़ाना की वाजिब नमाज़ें</h3>
+    <div class="prayer-step">फ़ज्र — <b>2 रकअत</b></div>
+    <div class="prayer-step">ज़ुहर — <b>4 रकअत</b></div>
+    <div class="prayer-step">अस्र — <b>4 रकअत</b></div>
+    <div class="prayer-step">मग़रिब — <b>3 रकअत</b></div>
+    <div class="prayer-step">इशा — <b>4 रकअत</b></div>
+    <p class="muted">यात्रा की स्थिति में कुछ नमाज़ों की रकअतों के नियम अलग होते हैं। सफ़र के नियम अपने मरजा से सीखें।</p>
+  </div>
+
+  <div class="card">
+    <h3>3. नमाज़ की तैयारी</h3>
+    <div class="prayer-step">1. नमाज़ का वक़्त हो और क़िबला निर्धारित करें।</div>
+    <div class="prayer-step">2. पाकीज़गी, कपड़े, जगह और शरीर से संबंधित शर्तें पूरी करें।</div>
+    <div class="prayer-step">3. वुज़ू करें; ज़रूरत होने पर ग़ुस्ल या तयम्मुम के नियम लागू हो सकते हैं।</div>
+    <div class="prayer-step">4. सज्दे के लिए पाक मिट्टी या सही सज्दा-गाह तैयार रखें।</div>
+    <div class="prayer-step">5. दिल में क़ुर्बत की नियत करें।</div>
+  </div>
+
+  <div class="card">
+    <h3>4. नमाज़ की पहली रकअत — बुनियादी क्रम</h3>
+    <div class="prayer-step"><b>तकबीरतुल इहराम:</b> सीधे खड़े होकर कहें:</div>
+    <div class="dua-ar">اللَّهُ أَكْبَرُ</div>
+    <p>उच्चारण: अल्लाहु अकबर। अर्थ: अल्लाह सबसे बड़ा है।</p>
+
+    <div class="prayer-step"><b>सूरह अल-फ़ातिहा:</b> पूरी सूरह पढ़ें।</div>
+    <div class="prayer-step"><b>दूसरी सूरह:</b> सामान्य वाजिब नमाज़ में फ़ातिहा के बाद एक पूरी सूरह पढ़ने के नियम होते हैं; विवरण अपने मरजा से सीखें।</div>
+    <div class="prayer-step"><b>रुकू:</b> झुककर रुकू का ज़िक्र पढ़ें। एक प्रचलित तस्बीह:</div>
+    <div class="dua-ar">سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ</div>
+    <p>उच्चारण: सुब्हाना रब्बियल अज़ीमि व बिहम्दिह।</p>
+
+    <div class="prayer-step"><b>सज्दा:</b> सज्दे में माथा, दोनों हथेलियाँ, दोनों घुटने और दोनों पैरों के अंगूठों के सिरे ज़मीन पर रखने के नियम हैं। सज्दे का एक प्रचलित ज़िक्र:</div>
+    <div class="dua-ar">سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ</div>
+    <p>उच्चारण: सुब्हाना रब्बियल अअला व बिहम्दिह।</p>
+    <p class="muted">एक रकअत में दो सज्दे होते हैं। इनके बीच बैठना भी नमाज़ का हिस्सा है।</p>
+  </div>
+
+  <div class="card">
+    <h3>5. दूसरी रकअत और क़ुनूत</h3>
+    <div class="prayer-step">दूसरी रकअत में खड़े होकर फ़ातिहा और दूसरी सूरह पढ़ें।</div>
+    <div class="prayer-step">रुकू से पहले हाथ उठाकर क़ुनूत में दुआ करना मुस्तहब है। क़ुनूत में कोई भी उचित दुआ पढ़ सकते हैं।</div>
+    <div class="dua-ar">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+    <p>उच्चारण: रब्बना आतिना फ़िद्दुन्या हसनतन व फ़िल आख़िरति हसनतन व क़िना अज़ाबन्नार।</p>
+    <p class="muted">इसके बाद रुकू और दो सज्दे करें। रकअतों के बीच बैठने और आगे बढ़ने का क्रम नमाज़ के अनुसार रखें।</p>
+  </div>
+
+  <div class="card">
+    <h3>6. तशह्हुद और सलाम</h3>
+    <p class="muted">तशह्हुद और सलाम के अरबी पाठ तथा उनके कुछ शब्दों में मरजा के अनुसार विवरण हो सकता है। इसलिए नीचे केवल एक संक्षिप्त परिचय दिया गया है; इसे पूरा नमाज़-पाठ न समझें।</p>
+    <div class="prayer-step"><b>तशह्हुद:</b> अल्लाह की वहदानियत और पैग़म्बर मुहम्मद ﷺ की रिसालत की गवाही तथा नबी और उनकी आल पर सलवात पढ़ी जाती है।</div>
+    <div class="prayer-step"><b>सलाम:</b> अंतिम रकअत के तशह्हुद के बाद नमाज़ का सलाम पढ़ा जाता है। सही पूरा पाठ अपने मरजा की किताब से सीखें।</div>
+  </div>
+
+  <div class="card">
+    <h3>7. तीन और चार रकअत वाली नमाज़</h3>
+    <p>दूसरी रकअत के तशह्हुद के बाद खड़े होकर तीसरी रकअत में तस्बीहाते अरबा पढ़ने का प्रचलित तरीका है:</p>
+    <div class="dua-ar">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ</div>
+    <p class="translation">उच्चारण: सुब्हानल्लाहि वल्हम्दु लिल्लाहि व ला इलाहा इल्लल्लाहु वल्लाहु अकबर।</p>
+    <p class="translation">अर्थ: अल्लाह पाक है, सब तारीफ़ अल्लाह के लिए है, अल्लाह के सिवा कोई माबूद नहीं, और अल्लाह सबसे बड़ा है।</p>
+    <p class="muted">तस्बीहाते अरबा की संख्या और पढ़ने के नियम अपने मरजा के अनुसार सीखें। मग़रिब में तीसरी रकअत के बाद तशह्हुद और सलाम होता है; चार रकअत वाली नमाज़ में चौथी रकअत के बाद।</p>
+  </div>
+
+  <div class="card">
+    <h3>8. नमाज़ की फ़ज़ीलत</h3>
+    <p>नमाज़ अल्लाह की याद, शुक्र, अनुशासन और नैतिक सुधार का अहम ज़रिया है। नमाज़ को ध्यान और ख़ुलूस के साथ पढ़ने की कोशिश करें। किसी विशेष सवाब या वादे को बिना विश्वसनीय स्रोत के निश्चित न मानें।</p>
+  </div>
+</section>
+
+<!-- OCCASIONS -->
 <section id="occasions" class="panel">
-
   <div class="card occasion">
     <h3>🌙 शब-ए-बरात</h3>
-    <p>इबादत, दुआ, इस्तिग़फ़ार और अपने अमल की इस्लाह पर ध्यान दें। ख़ास रस्मों और फ़ज़ीलत से जुड़ी रिवायतों की पुष्टि भरोसेमंद आलिम से करें।</p>
+    <p>इबादत, दुआ, इस्तिग़फ़ार और अपने अमल की इस्लाह पर ध्यान दें। विशेष रिवायतों की पुष्टि भरोसेमंद आलिम से करें।</p>
   </div>
-
   <div class="card occasion">
     <h3>🤲 रमज़ान और इफ़्तार</h3>
-    <p>रमज़ान रोज़े, क़ुरआन, सदक़ा और सब्र का महीना है। इफ़्तार के वक़्त अल्लाह से दुआ करें।</p>
-    <div class="dua-ar">
-      رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ
-    </div>
-    <p class="muted">अर्थ: ऐ हमारे रब! हमसे क़बूल फ़रमा, बेशक तू सुनने और जानने वाला है।</p>
+    <p>रमज़ान रोज़े, क़ुरआन, सदक़ा और सब्र का महीना है।</p>
+    <div class="dua-ar">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ</div>
+    <p>अर्थ: ऐ हमारे रब! हमसे क़बूल फ़रमा, बेशक तू सुनने और जानने वाला है।</p>
   </div>
-
   <div class="card occasion">
-    <h3>🕌 तरावीह</h3>
-    <p>तरावीह रमज़ान की रातों में पढ़ी जाने वाली नमाज़ है। नमाज़ के बाद दुआ और इस्तिग़फ़ार करें।</p>
+    <h3>🕌 मुहर्रम और आशूरा</h3>
+    <p>मुहर्रम इस्लामी साल का सम्मानित महीना है। इमाम हुसैन (अ.) और कर्बला की याद से सब्र, इंसाफ़ और सच्चाई का सबक़ लें।</p>
   </div>
-
-  <div class="card occasion">
-    <h3>🌹 मुहर्रम और आशूरा</h3>
-    <p>मुहर्रम इस्लामी साल का सम्मानित महीना है। आशूरा के रोज़े और उससे जुड़ी जानकारी के लिए भरोसेमंद आलिम से मार्गदर्शन लें।</p>
-  </div>
-
   <div class="card occasion">
     <h3>🕌 ईद</h3>
-    <p>ईद की नमाज़, रिश्तेदारों से मेल-मिलाप, शुक्र, सदक़ा और ज़रूरतमंदों की मदद का ध्यान रखें।</p>
+    <p>ईद की इबादत, शुक्र, रिश्तेदारों से मेल-मिलाप और ज़रूरतमंदों की मदद का ध्यान रखें।</p>
   </div>
-
 </section>
 
 <!-- TASBEEH -->
-
 <section id="tasbeeh" class="panel">
-
   <div class="card" style="text-align:center">
     <h2>📿 डिजिटल तस्बीह</h2>
-
-    <p class="muted">
-      अपना ज़िक्र आराम से करें। काउंटर इस डिवाइस पर सेव रहेगा।
-    </p>
-
-    <div id="count"
-         style="font-size:56px;font-weight:bold;color:var(--green);margin:15px">
-      0
-    </div>
-
+    <p class="muted">काउंटर इस डिवाइस पर सेव रहेगा।</p>
+    <div id="count" style="font-size:56px;font-weight:bold;color:var(--green);margin:15px">0</div>
     <div class="row" style="justify-content:center">
       <button class="primary" id="plus">+ एक तस्बीह</button>
       <button class="secondary" id="reset">रीसेट</button>
     </div>
   </div>
-
 </section>
-
 </main>
 
 <nav class="bottom">
-  <button class="active" data-panel="quran"><span>📖</span>सूरह</button>
+  <button class="active" data-panel="quran"><span>📖</span>क़ुरआन</button>
   <button data-panel="duas"><span>🤲</span>दुआएँ</button>
-  <button data-panel="occasions"><span>🌙</span>मौके</button>
+  <button data-panel="durood"><span>📿</span>दुरूद</button>
+  <button data-panel="namaz"><span>🕌</span>नमाज़</button>
   <button data-panel="tasbeeh"><span>📿</span>तस्बीह</button>
 </nav>
 
 <script>
 const surahs = [
-  {n:1, name:'अल-फ़ातिहा', en:'Al-Fatihah', count:7},
-  {n:109, name:'अल-काफ़िरून', en:'Al-Kafirun', count:6},
-  {n:112, name:'अल-इख़लास', en:'Al-Ikhlas', count:4},
-  {n:113, name:'अल-फ़लक़', en:'Al-Falaq', count:5},
-  {n:114, name:'अन-नास', en:'An-Nas', count:6},
-  {n:36, name:'यासीन', en:'Ya-Sin', count:83},
-  {n:55, name:'अर-रहमान', en:'Ar-Rahman', count:78},
-  {n:56, name:'अल-वाक़िआ', en:'Al-Waqiah', count:96},
-  {n:73, name:'अल-मुज़म्मिल', en:'Al-Muzzammil', count:20},
-  {n:67, name:'अल-मुल्क', en:'Al-Mulk', count:30}
+ {n:1,name:'अल-फ़ातिहा',en:'Al-Fatihah',count:7},
+ {n:109,name:'अल-काफ़िरून',en:'Al-Kafirun',count:6},
+ {n:112,name:'अल-इख़लास',en:'Al-Ikhlas',count:4},
+ {n:113,name:'अल-फ़लक़',en:'Al-Falaq',count:5},
+ {n:114,name:'अन-नास',en:'An-Nas',count:6},
+ {n:36,name:'यासीन',en:'Ya-Sin',count:83},
+ {n:55,name:'अर-रहमान',en:'Ar-Rahman',count:78},
+ {n:56,name:'अल-वाक़िआ',en:'Al-Waqiah',count:96},
+ {n:73,name:'अल-मुज़म्मिल',en:'Al-Muzzammil',count:20},
+ {n:67,name:'अल-मुल्क',en:'Al-Mulk',count:30}
 ];
 
-const list = document.getElementById('surahList');
-const view = document.getElementById('surahView');
-const status = document.getElementById('loadStatus');
-const ayahs = document.getElementById('ayahs');
-const audio = document.getElementById('surahAudio');
-const playAudio = document.getElementById('playAudio');
+const list=document.getElementById('surahList');
+const view=document.getElementById('surahView');
+const status=document.getElementById('loadStatus');
+const ayahs=document.getElementById('ayahs');
+const audio=document.getElementById('surahAudio');
+const playAudio=document.getElementById('playAudio');
 
-let requestId = 0;
-let currentAyahButton = null;
+let requestId=0;
+let currentAyahButton=null;
+let audioMode='surah';
 
-surahs.forEach(s => {
-  const b = document.createElement('button');
-  b.className = 'surah-btn';
-
-  const title = document.createElement('b');
-  title.textContent = s.name;
-
-  const details = document.createElement('small');
-  details.textContent = `${s.en} • ${s.count} आयतें`;
-
-  b.append(title, details);
-  b.onclick = () => loadSurah(s);
-
-  list.appendChild(b);
+surahs.forEach(s=>{
+ const b=document.createElement('button');
+ b.className='surah-btn';
+ const title=document.createElement('b');
+ title.textContent=s.name;
+ const details=document.createElement('small');
+ details.textContent=`${s.en} • ${s.count} आयतें`;
+ b.append(title,details);
+ b.onclick=()=>loadSurah(s);
+ list.appendChild(b);
 });
 
-async function loadSurah(s) {
-  const thisRequest = ++requestId;
+async function loadSurah(s){
+ const thisRequest=++requestId;
+ view.classList.remove('hide');
+ document.getElementById('surahTitle').textContent=`${s.name} — ${s.en}`;
+ ayahs.innerHTML='';
+ status.textContent='आयतें लोड हो रही हैं…';
+ audio.pause();
+ audio.removeAttribute('src');
+ audio.load();
+ playAudio.disabled=true;
+ currentAyahButton=null;
 
-  view.classList.remove('hide');
-  document.getElementById('surahTitle').textContent =
-    `${s.name} — ${s.en}`;
+ try{
+  const [arRes,hiRes]=await Promise.all([
+   fetch(`https://api.alquran.cloud/v1/surah/${s.n}/quran-uthmani`),
+   fetch(`https://api.alquran.cloud/v1/surah/${s.n}/hi.hindi`)
+  ]);
+  if(!arRes.ok||!hiRes.ok) throw new Error('API error');
+  const [arJson,hiJson]=await Promise.all([arRes.json(),hiRes.json()]);
+  if(thisRequest!==requestId)return;
+  if(arJson.code!==200||hiJson.code!==200)throw new Error('Data unavailable');
 
-  ayahs.innerHTML = '';
-  status.textContent = 'आयतें लोड हो रही हैं…';
+  const ar=arJson.data.ayahs;
+  const hi=hiJson.data.ayahs;
+  if(!ar.length||ar.length!==hi.length)throw new Error('Ayah mismatch');
 
-  audio.pause();
-  audio.removeAttribute('src');
+  const frag=document.createDocumentFragment();
+  ar.forEach((a,i)=>{
+   const div=document.createElement('div');
+   div.className='ayah';
+   const num=document.createElement('span');
+   num.className='number';
+   num.textContent=a.numberInSurah;
+   const arab=document.createElement('div');
+   arab.className='arabic';
+   arab.textContent=a.text;
+   const tr=document.createElement('div');
+   tr.className='translation';
+   tr.textContent=hi[i].text;
+   const btn=document.createElement('button');
+   btn.className='secondary';
+   btn.textContent='▶ आयत सुनें';
+
+   btn.onclick=async()=>{
+    try{
+     audioMode='ayah';
+     audio.pause();
+     if(currentAyahButton)currentAyahButton.textContent='▶ आयत सुनें';
+     currentAyahButton=btn;
+     btn.textContent='⏳ ऑडियो लोड हो रहा है…';
+     audio.src=`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${a.number}.mp3`;
+     audio.load();
+     await audio.play();
+     btn.textContent='🔊 आयत चल रही है';
+     status.textContent=`${s.name} — आयत ${a.numberInSurah} चल रही है।`;
+    }catch(e){
+     btn.textContent='▶ फिर कोशिश करें';
+     status.textContent='ऑडियो नहीं चला। इंटरनेट जाँचें और फिर कोशिश करें।';
+    }
+   };
+   div.append(num,arab,tr,btn);
+   frag.appendChild(div);
+  });
+  ayahs.appendChild(frag);
+  audio.src=`https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${s.n}.mp3`;
   audio.load();
-
-  playAudio.disabled = true;
-
-  try {
-    const [arRes, hiRes] = await Promise.all([
-      fetch(`https://api.alquran.cloud/v1/surah/${s.n}/quran-uthmani`),
-      fetch(`https://api.alquran.cloud/v1/surah/${s.n}/hi.hindi`)
-    ]);
-
-    if (!arRes.ok || !hiRes.ok) {
-      throw new Error('API response error');
-    }
-
-    const [arJson, hiJson] = await Promise.all([
-      arRes.json(),
-      hiRes.json()
-    ]);
-
-    if (thisRequest !== requestId) return;
-
-    if (arJson.code !== 200 || hiJson.code !== 200) {
-      throw new Error('Surah data unavailable');
-    }
-
-    const ar = arJson.data.ayahs;
-    const hi = hiJson.data.ayahs;
-
-    if (!ar.length || ar.length !== hi.length) {
-      throw new Error('Ayah count mismatch');
-    }
-
-    const frag = document.createDocumentFragment();
-
-    ar.forEach((a, i) => {
-      const div = document.createElement('div');
-      div.className = 'ayah';
-
-      const num = document.createElement('span');
-      num.className = 'number';
-      num.textContent = a.numberInSurah;
-
-      const arab = document.createElement('div');
-      arab.className = 'arabic';
-      arab.textContent = a.text;
-
-      const tr = document.createElement('div');
-      tr.className = 'translation';
-      tr.textContent = hi[i].text;
-
-      const btn = document.createElement('button');
-      btn.className = 'secondary';
-      btn.textContent = '▶ आयत सुनें';
-
-      btn.onclick = async () => {
-        try {
-          audio.pause();
-
-          if (currentAyahButton) {
-            currentAyahButton.textContent = '▶ आयत सुनें';
-          }
-
-          currentAyahButton = btn;
-          btn.textContent = '⏳ ऑडियो लोड हो रहा है…';
-
-          /*
-           * a.number is the global Quran ayah number.
-           * This audio URL requests that individual ayah.
-           */
-          audio.src =
-            `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${a.number}.mp3`;
-
-          audio.load();
-          await audio.play();
-
-          btn.textContent = '🔊 आयत चल रही है';
-          status.textContent =
-            `${s.name} — आयत ${a.numberInSurah} का ऑडियो चल रहा है।`;
-
-        } catch (error) {
-          btn.textContent = '▶ फिर कोशिश करें';
-          status.textContent =
-            'ऑडियो नहीं चला। इंटरनेट जाँचकर दोबारा कोशिश करें।';
-        }
-      };
-
-      div.append(num, arab, tr, btn);
-      frag.appendChild(div);
-    });
-
-    ayahs.appendChild(frag);
-
-    audio.src =
-      `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${s.n}.mp3`;
-
-    audio.load();
-    playAudio.disabled = false;
-
-    status.textContent =
-      `${s.name}: सभी ${ar.length} आयतें लोड हो गईं। हर आयत के नीचे अलग ऑडियो बटन है।`;
-
-    view.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-
-  } catch (error) {
-    if (thisRequest !== requestId) return;
-
-    status.textContent =
-      'आयतें लोड नहीं हो सकीं। इंटरनेट जाँचकर दोबारा कोशिश करें।';
-
-    ayahs.innerHTML =
-      '<p class="muted">सर्वर तक पहुँचना ज़रूरी है। कृपया कुछ देर बाद फिर कोशिश करें।</p>';
-
-    console.error(error);
-  }
+  audioMode='surah';
+  playAudio.disabled=false;
+  status.textContent=`${s.name}: ${ar.length} आयतें लोड हो गईं।`;
+  view.scrollIntoView({behavior:'smooth',block:'start'});
+ }catch(e){
+  if(thisRequest!==requestId)return;
+  status.textContent='आयतें लोड नहीं हो सकीं। इंटरनेट जाँचकर दोबारा कोशिश करें।';
+  ayahs.innerHTML='<p class="muted">सर्वर तक पहुँचना ज़रूरी है। कुछ देर बाद फिर कोशिश करें।</p>';
+  console.error(e);
+ }
 }
 
-playAudio.onclick = () => {
-  if (!audio.src) return;
-
-  audio.play().catch(() => {
-    status.textContent =
-      'ऑडियो शुरू नहीं हुआ। Audio Player में Play दबाएँ या इंटरनेट जाँचें।';
-  });
+playAudio.onclick=()=>{
+ if(!audio.src)return;
+ audioMode='surah';
+ audio.play().catch(()=>{
+  status.textContent='ऑडियो शुरू नहीं हुआ। प्लेयर में Play दबाएँ या इंटरनेट जाँचें।';
+ });
 };
-
-document.getElementById('stopAudio').onclick = () => {
-  audio.pause();
-  audio.currentTime = 0;
-
-  if (currentAyahButton) {
-    currentAyahButton.textContent = '▶ आयत सुनें';
-    currentAyahButton = null;
-  }
-
-  status.textContent = 'ऑडियो रोक दिया गया।';
+document.getElementById('stopAudio').onclick=()=>{
+ audio.pause();
+ audio.currentTime=0;
+ if(currentAyahButton)currentAyahButton.textContent='▶ आयत सुनें';
+ currentAyahButton=null;
+ status.textContent='ऑडियो रोक दिया गया।';
 };
-
-audio.addEventListener('ended', () => {
-  if (currentAyahButton) {
-    currentAyahButton.textContent = '▶ आयत सुनें';
-    currentAyahButton = null;
-  }
+audio.addEventListener('ended',()=>{
+ if(currentAyahButton){
+  currentAyahButton.textContent='▶ आयत सुनें';
+  currentAyahButton=null;
+ }
 });
 
-function showPanel(id) {
-  document.querySelectorAll('.panel').forEach(panel => {
-    panel.classList.toggle('active', panel.id === id);
-  });
-
-  document.querySelectorAll('[data-panel]').forEach(button => {
-    button.classList.toggle('active', button.dataset.panel === id);
-  });
-
-  window.scrollTo({top: 0, behavior: 'smooth'});
-}
-
-document.querySelectorAll('[data-panel]').forEach(button => {
-  button.addEventListener('click', () => {
-    showPanel(button.dataset.panel);
-  });
-});
-
-let count = Number(localStorage.getItem('iqbalTasbeeh') || 0);
-
-function draw() {
-  document.getElementById('count').textContent = count;
-  localStorage.setItem('iqbalTasbeeh', count);
-}
-
-document.getElementById('plus').onclick = () => {
-  count++;
-  draw();
-};
-
-document.getElementById('reset').onclick = () => {
-  if (confirm('काउंटर रीसेट करें?')) {
-    count = 0;
-    draw();
-  }
-};
-
-draw();
-</script>
-
-</body>
-</html>
+async function loadAyatulKursi(){
+ const arEl=document.getElementById('kursiArabic');
+ const hiEl=document.getElementById('kursiTranslation');
+ const audioEl=document.getElementById('kursiAudio');
+ try{
+  const [arRes,hiRes]=await Promise.all([
+   fetch('https://api.alquran.cloud/v1/ayah/2:255/quran-uthmani'),
+   fetch('https://api.alquran.cloud/v1/ayah/2:255/hi.hindi')
+  ]);
+  if(!arRes.ok||!hiRes.ok)throw new Error('Network error');
+  const [ar,hi]=await Promise.all([arRes.json(),hiRes.json()]);
+  if(ar.code!==200||hi.code!==200)throw new Error('API error');
+  ar
